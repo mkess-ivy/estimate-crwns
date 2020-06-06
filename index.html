@@ -26,63 +26,63 @@
                 <label for="brand_design">Brand Design</label>
                 <input 
                 v-model="form.brand_design"
-                type="tel" placeholder="20" class="form-control form-control-lg">
+                type="number" placeholder="20" class="form-control form-control-lg">
             </div>
 
             <div>
                 <label for="research_insights">Research Insights</label>
                 <input 
                 v-model="form.research_insights"
-                type="tel" placeholder="20" class="form-control form-control-lg">
+                type="number" placeholder="20" class="form-control form-control-lg">
             </div>
             
             <div>
                 <label for="content_strategy">Content Strategy</label>
                 <input 
                 v-model="form.content_strategy"
-                type="tel" placeholder="20" class="form-control form-control-lg">
+                type="number" placeholder="20" class="form-control form-control-lg">
             </div>
 
             <div>
                 <label for="platforms">Platforms</label>
                 <input 
                 v-model="form.platforms"
-                type="tel" placeholder="75" class="form-control form-control-lg">
+                type="number" placeholder="75" class="form-control form-control-lg">
             </div>
 
             <div>
                 <label for="activations">Activations</label>
                 <input 
                 v-model="form.activations"
-                type="tel" placeholder="125" class="form-control form-control-lg">
+                type="number" placeholder="125" class="form-control form-control-lg">
             </div>
 
             <div>
                 <label for="consulting">Consulting</label>
                 <input 
                 v-model="form.consulting"
-                type="tel" placeholder="25" class="form-control form-control-lg">
+                type="number" placeholder="25" class="form-control form-control-lg">
             </div>
 
             <div>
                 <label for="brand_foundation">Brand Foundation</label>
                 <input 
                 v-model="form.brand_foundation"
-                type="tel" placeholder="220" class="form-control form-control-lg">
+                type="number" placeholder="220" class="form-control form-control-lg">
             </div>
 
             <div>
                 <label for="brand_mgmt">Brand Management</label>
                 <input 
                 v-model="form.brand_mgmt"
-                type="tel" placeholder="120" class="form-control form-control-lg">
+                type="number" placeholder="120" class="form-control form-control-lg">
             </div>
 
             <div>
                 <label for="brand_operations">Brand Operations</label>
                 <input 
                 v-model="form.brand_operations"
-                type="tel" placeholder="120" class="form-control form-control-lg">
+                type="number" placeholder="120" class="form-control form-control-lg">
             </div>
 
             <!-- <div v-for="service in services">
@@ -91,10 +91,9 @@
                 v-model="form.{{ service.variable }}"
                 type="number" placeholder="{{ service.estimate_value }}" class="form-control form-control-lg">
             </div> -->
+             
 
-            <div>
-                <h3>Total Value:</h3> {{ service_total }}
-            </div>
+            <h3>Total Value: </h3> {{ Number(form.brand_design) + Number(form.research_insights) + Number(form.content_strategy) + Number(form.platforms) + Number(form.activations) + Number(form.consulting) + Number(form.brand_foundation) + Number(form.brand_mgmt) + Number(form.brand_operations) + Number(form.brand_transitions) }}
         </section>
         <section v-if="step == 3">
             <h3>Step 3</h3>
@@ -153,9 +152,16 @@
                     brand_operations: null,
                     brand_transitions: null
                 }
+
+                
             },
 
+            
+
             computed: {
+                
+            
+
                 service_total: function () {
                     return this.form.brand_design + this.form.research_insights + this.form.content_strategy + this.form.platforms +
                     this.form.activations +
@@ -163,7 +169,9 @@
                     this.form.brand_foundation +
                     this.form.brand_mgmt +
                     this.form.brand_operations +
-                    this.form.brand_transitions
+                    this.form.brand_transitions;
+
+                    return false;
                 }
             },
 

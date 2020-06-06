@@ -16,7 +16,7 @@
 
             <input 
             v-model="form.rate"
-            type="number" placeholder="$75" class="form-control form-control-lg">
+            type="number" placeholder="$75" class="form-control form-control-lg" >
         
         </section>
         <section v-if="step == 2">
@@ -96,15 +96,52 @@
             <h3>Total Value: </h3> 
             {{ service_total }}
 
-           <h3>Rate x Total Value</h3>
-           {{ rate_service }}
+           <h3>Initial Cost</h3>
+           ${{ rate_service }}
 
         </section>
+        
         <section v-if="step == 3">
-            <h3>Step 3</h3>
-            <textarea 
-            v-model="form.messsage"
-            placeholder="Type your message" class="form-control form-control-lg"></textarea>
+           
+                <h3>Impact Rate</h3>
+                <p>The impact value determines how much this work will impact the brand's ability to make money</p>
+                <select v-model="impact_rate">
+                    <option disabled value="">Please select one</option>
+                    <option v-bind:value="0">Lightly Impacts</option>
+                    <option v-bind:value="5">Moderately Impacts</option>
+                    <option v-bind:value="10">Heavily Impacts</option>
+                </select>
+
+                <br/>
+
+                Impact Rate: {{ impact_rate }}
+
+        </section>
+
+        <section v-if="step == 4">
+            
+                <h3>Timeline Rate</h3>
+                <p>Is the client comfortable with our timeline, or do we need to expedite?</p>
+                <input type="radio" name="radio" id="one" value="0" v-model="timeline_rate"><label for="one">No Expedite</label>
+
+                <input type="radio" name="radio" id="two" value="5" v-model="timeline_rate"><label for="two">Two Weeks Expedited</label>
+
+                <input type="radio" name="radio" id="three" value="10" v-model="timeline_rate"><label for="three">30 Days Expedited</label>
+
+                <br/>
+                Timeline Rate: {{ timeline_rate }}
+          
+        </section>
+        
+        <section v-if="step == 5">
+            
+        
+            <h3>Estimates</h3>
+            <h6>Low Estimate:</h6> {{ low_estimate }}
+            <h6>Median Estimate:</h6> {{ median_estimate }}
+            <h6>High Estimate:</h6> {{ high_estimate }}
+            
+            
             
         </section>
 
@@ -117,7 +154,7 @@
         @click.prevent="nextStep">Next Step</button>
 
         <button 
-        v-if="step == 3"
+        v-if="step == 5"
         @click.prevent="sendInquiry">Send Inquiry</button>
 
     </form>
@@ -129,7 +166,9 @@
 
             data: {
                 step: 1,
-                totalsteps: 3,
+                totalsteps: 5,
+                impact_rate: '',
+                timeline_rate: '',
 
                 form: {
 
@@ -161,6 +200,10 @@
 
                 rate_service: function() {
                     return this.service_total * Number(this.form.rate);                    
+                },
+
+                ultra_value: function() {
+                    return Number(this.impact_rate) + Number(this.timeline_rate) + this.service_total;
                 }
             },
 
@@ -177,7 +220,7 @@
                 },
                 sendInquiry: function()
                 {
-                    alert('this has been sent');
+                    alert('this has been sent!');
                 }
 
             },

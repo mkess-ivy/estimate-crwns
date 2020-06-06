@@ -2,3 +2,8 @@ form {
     width: 75%;
     margin: 5em auto;
 }
+
+input {
+    color: red !important;
+    font-weight: bold;
+}

@@ -15,12 +15,12 @@
             <h3>Agency Rate</h3>
 
             <input 
-            v-model="form.name"
-            type="text" placeholder="$75" class="form-control form-control-lg">
+            v-model="form.rate"
+            type="number" placeholder="$75" class="form-control form-control-lg">
         
         </section>
         <section v-if="step == 2">
-            <h3>What type of project or service?</h3>
+            <h3>What type of service?</h3>
 
             <div>
                 <label for="brand_design">Brand Design</label>
@@ -93,7 +93,12 @@
             </div> -->
              
 
-            <h3>Total Value: </h3> {{ Number(form.brand_design) + Number(form.research_insights) + Number(form.content_strategy) + Number(form.platforms) + Number(form.activations) + Number(form.consulting) + Number(form.brand_foundation) + Number(form.brand_mgmt) + Number(form.brand_operations) + Number(form.brand_transitions) }}
+            <h3>Total Value: </h3> 
+            {{ service_total }}
+
+           <h3>Rate x Total Value</h3>
+           {{ rate_service }}
+
         </section>
         <section v-if="step == 3">
             <h3>Step 3</h3>
@@ -126,19 +131,6 @@
                 step: 1,
                 totalsteps: 3,
 
-                // services: [
-                //     { name: 'Brand Design', estimate_value: '20', variable: 'brand_design' },
-                //     { name: 'Research and Insights', estimate_value: '20', variable: 'research_insights' },
-                //     { name: 'Content Strategy', estimate_value: '20', variable: 'content_strategy' },
-                //     { name: 'Platforms', estimate_value: '75', variable: 'platforms' },
-                //     { name: 'Activation', estimate_value: '125', variable: 'activation' },
-                //     { name: 'Consulting', estimate_value: '30', variable: 'consulting' },
-                //     { name: 'Brand Foundation', estimate_value: '220', variable: 'brand_foundation' },
-                //     { name: 'Brand Management', estimate_value: '120', variable: 'brand_mgmt' },
-                //     { name: 'Brand Operations', estimate_value: '120', variable: 'brand_operations' },
-                //     { name: 'Brand Transitions', estimate_value: '220', variable: 'brand_transitions' },
-                // ],
-
                 form: {
 
                     brand_design: null,
@@ -150,7 +142,8 @@
                     brand_foundation: null,
                     brand_mgmt: null,
                     brand_operations: null,
-                    brand_transitions: null
+                    brand_transitions: null,
+                    rate: null
                 }
 
                 
@@ -160,18 +153,14 @@
 
             computed: {
                 
-            
-
                 service_total: function () {
-                    return this.form.brand_design + this.form.research_insights + this.form.content_strategy + this.form.platforms +
-                    this.form.activations +
-                    this.form.consulting +
-                    this.form.brand_foundation +
-                    this.form.brand_mgmt +
-                    this.form.brand_operations +
-                    this.form.brand_transitions;
+                    return Number(this.form.brand_design) + Number(this.form.research_insights) + Number(this.form.content_strategy) + Number(this.form.platforms) + Number(this.form.activations) + Number(this.form.consulting) + Number(this.form.brand_foundation) + Number(this.form.brand_mgmt) + Number(this.form.brand_operations) + Number(this.form.brand_transitions);
 
                     return false;
+                },
+
+                rate_service: function() {
+                    return this.service_total * Number(this.form.rate);                    
                 }
             },
 

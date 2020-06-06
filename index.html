@@ -1,1 +1,193 @@
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS App - CRWNS Estimator</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <form id="app">
+        <section v-if="step == 1">
+            <h3>Agency Rate</h3>
+
+            <input 
+            v-model="form.name"
+            type="text" placeholder="$75" class="form-control form-control-lg">
+        
+        </section>
+        <section v-if="step == 2">
+            <h3>What type of project or service?</h3>
+
+            <div>
+                <label for="brand_design">Brand Design</label>
+                <input 
+                v-model="form.brand_design"
+                type="tel" placeholder="20" class="form-control form-control-lg">
+            </div>
+
+            <div>
+                <label for="research_insights">Research Insights</label>
+                <input 
+                v-model="form.research_insights"
+                type="tel" placeholder="20" class="form-control form-control-lg">
+            </div>
+            
+            <div>
+                <label for="content_strategy">Content Strategy</label>
+                <input 
+                v-model="form.content_strategy"
+                type="tel" placeholder="20" class="form-control form-control-lg">
+            </div>
+
+            <div>
+                <label for="platforms">Platforms</label>
+                <input 
+                v-model="form.platforms"
+                type="tel" placeholder="75" class="form-control form-control-lg">
+            </div>
+
+            <div>
+                <label for="activations">Activations</label>
+                <input 
+                v-model="form.activations"
+                type="tel" placeholder="125" class="form-control form-control-lg">
+            </div>
+
+            <div>
+                <label for="consulting">Consulting</label>
+                <input 
+                v-model="form.consulting"
+                type="tel" placeholder="25" class="form-control form-control-lg">
+            </div>
+
+            <div>
+                <label for="brand_foundation">Brand Foundation</label>
+                <input 
+                v-model="form.brand_foundation"
+                type="tel" placeholder="220" class="form-control form-control-lg">
+            </div>
+
+            <div>
+                <label for="brand_mgmt">Brand Management</label>
+                <input 
+                v-model="form.brand_mgmt"
+                type="tel" placeholder="120" class="form-control form-control-lg">
+            </div>
+
+            <div>
+                <label for="brand_operations">Brand Operations</label>
+                <input 
+                v-model="form.brand_operations"
+                type="tel" placeholder="120" class="form-control form-control-lg">
+            </div>
+
+            <!-- <div v-for="service in services">
+                <label for="{{ service.variable }}">{{ service.name }}</label>
+                <input 
+                v-model="form.{{ service.variable }}"
+                type="number" placeholder="{{ service.estimate_value }}" class="form-control form-control-lg">
+            </div> -->
+
+            <div>
+                <h3>Total Value:</h3> {{ service_total }}
+            </div>
+        </section>
+        <section v-if="step == 3">
+            <h3>Step 3</h3>
+            <textarea 
+            v-model="form.messsage"
+            placeholder="Type your message" class="form-control form-control-lg"></textarea>
+            
+        </section>
+
+        <button 
+        v-if="step != 1"
+        @click.prevent="prevStep">Previous Step</button>
+
+        <button 
+        v-if="step != totalsteps"
+        @click.prevent="nextStep">Next Step</button>
+
+        <button 
+        v-if="step == 3"
+        @click.prevent="sendInquiry">Send Inquiry</button>
+
+    </form>
+
+    <script>
+        const App = new Vue({
+
+            el:"#app",
+
+            data: {
+                step: 1,
+                totalsteps: 3,
+
+                // services: [
+                //     { name: 'Brand Design', estimate_value: '20', variable: 'brand_design' },
+                //     { name: 'Research and Insights', estimate_value: '20', variable: 'research_insights' },
+                //     { name: 'Content Strategy', estimate_value: '20', variable: 'content_strategy' },
+                //     { name: 'Platforms', estimate_value: '75', variable: 'platforms' },
+                //     { name: 'Activation', estimate_value: '125', variable: 'activation' },
+                //     { name: 'Consulting', estimate_value: '30', variable: 'consulting' },
+                //     { name: 'Brand Foundation', estimate_value: '220', variable: 'brand_foundation' },
+                //     { name: 'Brand Management', estimate_value: '120', variable: 'brand_mgmt' },
+                //     { name: 'Brand Operations', estimate_value: '120', variable: 'brand_operations' },
+                //     { name: 'Brand Transitions', estimate_value: '220', variable: 'brand_transitions' },
+                // ],
+
+                form: {
+
+                    brand_design: null,
+                    research_insights: null,
+                    content_strategy: null,
+                    platforms: null,
+                    activations: null,
+                    consulting: null,
+                    brand_foundation: null,
+                    brand_mgmt: null,
+                    brand_operations: null,
+                    brand_transitions: null
+                }
+            },
+
+            computed: {
+                service_total: function () {
+                    return this.form.brand_design + this.form.research_insights + this.form.content_strategy + this.form.platforms +
+                    this.form.activations +
+                    this.form.consulting +
+                    this.form.brand_foundation +
+                    this.form.brand_mgmt +
+                    this.form.brand_operations +
+                    this.form.brand_transitions
+                }
+            },
+
+            methods: {
+
+                prevStep: function()
+                {
+                    this.step--;
+                },
+                nextStep: function()
+                {
+                   
+                    this.step++;
+                },
+                sendInquiry: function()
+                {
+                    alert('this has been sent');
+                }
+
+            },
+
+            mounted(){
+            }
+        });
+    </script>
+</body>
+</html>

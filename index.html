@@ -137,10 +137,30 @@
             
         
             <h3>Estimates</h3>
-            <h6>Low Estimate:</h6> {{ low_estimate }}
-            <h6>Median Estimate:</h6> {{ median_estimate }}
-            <h6>High Estimate:</h6> {{ high_estimate }}
-            
+            <h6>Low Estimate:</h6> ${{ low_estimate }}
+            <h6>Median Estimate:</h6> ${{ median_estimate }}
+            <h6>High Estimate:</h6> ${{ high_estimate }}
+
+            <h3>More Info</h3>
+            <h6>Agency Rate:</h6> ${{ form.rate }}
+
+            <h3>Services Listed:</h3>
+            <h6 v-if="form.brand_design != null">Brand Design:</h6> {{ form.brand_design }}
+            <h6 v-if="form.research_insights != null">Research & Insights:</h6> {{ form.research_insights }}
+            <h6 v-if="form.content_strategy != null">Content Strategy:</h6> {{ form.content_strategy }}
+            <h6 v-if="form.platforms != null">Platforms:</h6> {{ form.platforms }}
+            <h6 v-if="form.activations != null">Activations:</h6> {{ form.activations }}
+            <h6 v-if="form.consulting != null">Consulting:</h6> {{ form.consulting }}
+            <h6 v-if="form.brand_foundation != null">Brand Foundation:</h6> {{ form.brand_foundation }}
+            <h6 v-if="form.brand_mgmt != null">Brand Management:</h6> {{ form.brand_mgmt }}
+            <h6 v-if="form.brand_operations != null">Brand Operations:</h6> {{ form.brand_operations }}
+            <h6 v-if="form.brand_transitions != null">Brand Transitions:</h6> {{ form.brand_transitions }}
+
+            <h3>Service Total</h3>
+            {{ service_total }}
+
+            <h3>Ultra Value</h3>
+            {{ ultra_value }}
             
             
         </section>
@@ -153,9 +173,12 @@
         v-if="step != totalsteps"
         @click.prevent="nextStep">Next Step</button>
 
-        <button 
+        <!-- <button 
         v-if="step == 5"
-        @click.prevent="sendInquiry">Send Inquiry</button>
+        @click.prevent="sendInquiry">Get Estimate</button> -->
+
+        <button v-if="step == 5"
+        class="button is-warning" @click="resetForm()">Reset Form</button>
 
     </form>
 
@@ -184,11 +207,8 @@
                     brand_transitions: null,
                     rate: null
                 }
-
                 
             },
-
-            
 
             computed: {
                 
@@ -204,6 +224,18 @@
 
                 ultra_value: function() {
                     return Number(this.impact_rate) + Number(this.timeline_rate) + this.service_total;
+                },
+
+                low_estimate: function() {
+                    return this.ultra_value * Number(this.form.rate) * 0.75;
+                },
+
+                median_estimate: function() {
+                    return this.ultra_value * Number(this.form.rate) * 1;
+                },
+
+                high_estimate: function() {
+                    return this.ultra_value * Number(this.form.rate) * 1.25;
                 }
             },
 
@@ -221,6 +253,15 @@
                 sendInquiry: function()
                 {
                     alert('this has been sent!');
+                },
+                resetForm() {
+                    console.log('Reseting the form')
+                    var self = this; //you need this because *this* will refer to Object.keys below`
+
+                    //Iterate through each object field, key is name of the object field`
+                    Object.keys(this.data.form).forEach(function(key,index) {
+                    self.data.form[key] = '';
+                    });
                 }
 
             },

@@ -37,16 +37,50 @@
 .description {
     padding-bottom: 15px;;
 }
+
 .group_small {
     padding-top: 15px;
 }
-    
-
 .group_copy_small {
     text-transform: uppercase;
     font-size: 12px;;
 }
+.group {
+    padding-bottom: 50px;
 
+    .group-copy {
+        width: 100%;
+        padding-right: 15px;
+
+        &.longer {
+            @include tablet {
+                width: 65%;
+                padding-bottom: 10px;
+            }
+        }
+        @include tablet {
+            width: 58%;
+
+            
+        }
+    }
+}
+.textbox {
+    padding-top: 10px;
+}
+
+.button_wrapper {
+    position: fixed;
+    bottom: 0px;
+    width: 85%;
+    background: $light_brown;
+    padding: 20px 0 30px;
+    border-top: 1px solid $black;
+
+    @include  tablet {
+        bottom: 0px;
+    }
+}
 button {
     background: black !important;
     text-transform: uppercase !important;
@@ -55,44 +89,37 @@ button {
     padding: 8px 20px !important;
     outline: none !important;
     border: none !important;
-    position: fixed !important;
-    bottom: 25px !important;
+    margin-right: 15px !important;
+    // position: fixed !important;
+    // bottom: 25px !important;
 
-    @include tablet {
-        bottom: 75px !important;
-    }
+    // @include tablet {
+    //     bottom: 75px !important;
+    // }
 }
 .next_button, .reset_button {
-    left: 225px;
+    // left: 225px;
 
-    @include tablet {
-        left: 250px;
-    }
+    // @include tablet {
+    //     left: 250px;
+    // }
 }
 
-.group {
-    padding-bottom: 30px;
 
-    .group-copy {
-        width: 100%;
-        padding-right: 15px;
-
-        @include tablet {
-            width: 40%;
-        }
-    }
-}
 
 .info_single {
 
     width: 100%;
     padding-bottom: 50px;
 
-    @include tablet {
-        padding-bottom: 0;
+    &.pages {
+        @include tablet {
+            width: 50%;
+        }
     }
 
     @include tablet {
+        padding-bottom: 0;
         width: 45%;
     }
 
@@ -141,6 +168,7 @@ button {
 
     @include tablet {
         margin-top: 30px;
+        width: 75%;
     }
 
     .heading {
@@ -155,8 +183,20 @@ button {
         color: $black;
     }
 }
+.page_group {
+    padding-bottom: 10px;
+}
+
 
 // Form Details
+.platform_control_label {
+    width: 300px;
+    color: $black;
+}
+.platform-control {
+    width: 75px !important;
+    margin-right: 20px !important;
+}
 .form-control {
     width: 100%;
     outline: none;
@@ -170,6 +210,7 @@ button {
 .form-control-lg {
     font-size: 16px !important;
 }
+
 input:placeholder-shown {
     color: $placeholder !important;
     background: transparent !important;
@@ -189,4 +230,11 @@ select {
     @include tablet {
         width: 30% !important;
     }
+}
+.long_select {
+    width: 65% !important;
+}
+textarea {
+    border-color: $black;
+    width: 90%;
 }

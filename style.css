@@ -34,6 +34,33 @@
   text-transform: uppercase;
   font-size: 12px; }
 
+.group {
+  padding-bottom: 50px; }
+  .group .group-copy {
+    width: 100%;
+    padding-right: 15px; }
+    @media screen and (min-width: 768px) {
+      .group .group-copy.longer {
+        width: 65%;
+        padding-bottom: 10px; } }
+    @media screen and (min-width: 768px) {
+      .group .group-copy {
+        width: 58%; } }
+
+.textbox {
+  padding-top: 10px; }
+
+.button_wrapper {
+  position: fixed;
+  bottom: 0px;
+  width: 85%;
+  background: #F0CFBD;
+  padding: 20px 0 30px;
+  border-top: 1px solid #000; }
+  @media screen and (min-width: 768px) {
+    .button_wrapper {
+      bottom: 0px; } }
+
 button {
   background: black !important;
   text-transform: uppercase !important;
@@ -42,35 +69,17 @@ button {
   padding: 8px 20px !important;
   outline: none !important;
   border: none !important;
-  position: fixed !important;
-  bottom: 25px !important; }
-  @media screen and (min-width: 768px) {
-    button {
-      bottom: 75px !important; } }
-
-.next_button, .reset_button {
-  left: 225px; }
-  @media screen and (min-width: 768px) {
-    .next_button, .reset_button {
-      left: 250px; } }
-
-.group {
-  padding-bottom: 30px; }
-  .group .group-copy {
-    width: 100%;
-    padding-right: 15px; }
-    @media screen and (min-width: 768px) {
-      .group .group-copy {
-        width: 40%; } }
+  margin-right: 15px !important; }
 
 .info_single {
   width: 100%;
   padding-bottom: 50px; }
   @media screen and (min-width: 768px) {
-    .info_single {
-      padding-bottom: 0; } }
+    .info_single.pages {
+      width: 50%; } }
   @media screen and (min-width: 768px) {
     .info_single {
+      padding-bottom: 0;
       width: 45%; } }
   .info_single .heading {
     text-transform: uppercase;
@@ -109,7 +118,8 @@ button {
   margin-top: 75px; }
   @media screen and (min-width: 768px) {
     .end_group {
-      margin-top: 30px; } }
+      margin-top: 30px;
+      width: 75%; } }
   .end_group .heading {
     padding-bottom: 5px; }
 
@@ -118,6 +128,17 @@ button {
   .radio_group label {
     width: 50%;
     color: #000; }
+
+.page_group {
+  padding-bottom: 10px; }
+
+.platform_control_label {
+  width: 300px;
+  color: #000; }
+
+.platform-control {
+  width: 75px !important;
+  margin-right: 20px !important; }
 
 .form-control {
   width: 100%;
@@ -147,6 +168,13 @@ select {
   @media screen and (min-width: 768px) {
     select {
       width: 30% !important; } }
+
+.long_select {
+  width: 65% !important; }
+
+textarea {
+  border-color: #000;
+  width: 90%; }
 
 body {
   background: #F0CFBD;

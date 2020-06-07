@@ -1,0 +1,63 @@
+$light_brown: #F0CFBD;
+$black: #000;
+$primary_font: 'Montserrat', sans-serif;
+$placeholder: #BF9D8D;
+
+
+$w_lite: 300;
+$w_reg: 400;
+$w_medium: 500;
+$w_bold: 700;
+
+
+// Media Query Sizes
+$on-small               : 375px;
+$on-palm                : 500px; 
+$on-tablet              : 768px; 
+$on-desktop             : 1024px;
+$on-standard            : 1200px;
+$on-widescreen          : 1320px;
+$on-tv                  : 1439px;
+$on-bigscreen           : 1600px;
+
+// Media Query Mixins
+@mixin small {
+  @media screen and (min-width: #{$on-small}) {
+    @content;
+  }
+}
+@mixin palm {
+  @media screen and (min-width: #{$on-palm}) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (min-width: #{$on-tablet}) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media screen and (min-width: #{$on-desktop}) {
+    @content;
+  }
+}
+@mixin standard {
+  @media screen and (min-width: #{$on-standard}) {
+    @content;
+  }
+}
+@mixin widescreen {
+  @media screen and (min-width: #{$on-widescreen}) {
+    @content;
+  }
+}
+@mixin tv {
+  @media screen and (min-width: #{$on-tv}) {
+    @content;
+  }
+}
+@mixin bigscreen {
+  @media screen and (min-width: #{$on-bigscreen}) {
+    @content;
+  }
+}

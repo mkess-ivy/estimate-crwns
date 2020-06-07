@@ -1,151 +1,197 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>VueJS App - CRWNS Estimator</title>
+    <title>Project Estimate - SVNCRWNS </title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <link rel="stylesheet" href="style.css" />
 
+    <link rel="stylesheet" href="vendor/frow.min.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,500&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+    <header>
+        <div class="frow justify-between">
+            <div class="crwns_logo"><img src="logo.png"  class="logo" /></div>
+            <div class="header_small">A SVNCRWNS Business Tool</div>
+        </div>
+        
+    </header>
+
     <form id="app">
         <section v-if="step == 1">
-            <div class="large_heading">Project Estimator</div>
-            <div class="large_description">An estimator for SVNCRWNS Projects that helps us get a quick snapshot of how to rate if we're interested in working with a potential client.  Run it up!<br/>Complete all the fields in the following screens.</div>
+            <div class="large_heading_group">
+                <div class="large_heading">Project Estimator</div>
+                <div class="large_description">An estimator for SVNCRWNS Projects that helps us get a quick snapshot of how to rate if we're interested in working with a potential client.  Run it up!<br/><br/>Complete all the fields in the following screens.</div>
+            </div>
         </section>
         <section v-if="step == 2">
-            <div class="large_heading">Project Information</div>
+            <div class="large_heading_group">
+                <div class="large_heading">Project Information</div>
+            </div>
             
-            <div class="group">
-                <div class="frow justify-start">
-                    <div class="group-copy">What's the client's name?</div>
-                    <input 
-                    v-model="form.client_name"
-                    type="text" placeholder="Roc Nation" class="form-control form-control-lg" >
+            <div class="info_wrapper">
+                <div class="group">
+                    <div class="frow justify-start">
+                        <div class="group-copy">What's the client's name?</div>
+                        <input 
+                        v-model="form.client_name"
+                        type="text" placeholder="Roc Nation" class="form-control form-control-lg" >
+                    </div>
+                </div>
+    
+                <div class="group">
+                    <div class="frow justify-start">
+                        <div class="group-copy">What industry is this business?</div>
+                        <select v-model="business_industry">
+                            <option disabled value="">Select Industry</option>
+                            <option>Retail Brand</option>
+                            <option>Wellness Brand</option>
+                            <option>Media Brand</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="group">
+                    <div class="frow justify-start">
+                        <div class="group-copy">Has client been in business 2 - 5 years?</div>
+                        <select v-model="established">
+                            <option disabled value="">Select Option</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="group">
+                    <div class="frow justify-start">
+                        <div class="group-copy">Our agency rate is typically $75 because we understand the value that our team brings to any business.  What agency rate do we want to use for this project?</div>
+                        <input 
+                        v-model="form.rate"
+                        type="number" placeholder="$75" class="form-control form-control-lg" >
+                    </div>
                 </div>
             </div>
-
-            <div class="group">
-                <div class="frow justify-start">
-                    <div class="group-copy">What industry is this business?</div>
-                    <select v-model="business_industry">
-                        <option disabled value="">Select Industry</option>
-                        <option>Retail Brand</option>
-                        <option>Wellness Brand</option>
-                        <option>Media Brand</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="group">
-                <div class="frow justify-start">
-                    <div class="group-copy">Has client been in business 2 - 5 years?</div>
-                    <select v-model="established">
-                        <option disabled value="">Select Option</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="group">
-                <div class="frow justify-start">
-                    <div class="group-copy">Our agency rate is typically $75 because we understand the value that our team brings to any business.  What agency rate do we want to use for this project?</div>
-                    <input 
-                    v-model="form.rate"
-                    type="number" placeholder="$75" class="form-control form-control-lg" >
-                </div>
-            </div>
+            
         </section>
         
         <section v-if="step == 3">
-            <div class="large_heading">What type of project or service?</div>
-            <div class="large_description">We provide a la carte services and project tracks.  Estimates for each are available in the input placeholders.</div>
-
+            <div class="large_heading_group">
+                <div class="large_heading">What type of project or service?</div>
+                <div class="large_description">We provide a la carte services and project tracks.  Estimates for each are available in the input placeholders.</div>
+            </div>
+            
             <div class="info_wrapper">
                 <div class="frow justify-between">
                     <div class="info_single">
                         <div class="heading">A la carte services</div>
 
                         <div class="service_group">
-                            <label for="brand_design">Brand Design</label>
-                            <input 
-                            v-model="form.brand_design"
-                            type="number" placeholder="20" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="brand_design">Brand Design</label>
+                                <input 
+                                v-model="form.brand_design"
+                                type="number" placeholder="20" class="form-control form-control-lg">
+                            </div>
                         </div>
 
                         <div class="service_group">
-                            <label for="content_strategy">Content Strategy</label>
-                            <input 
-                            v-model="form.content_strategy"
-                            type="number" placeholder="20" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="content_strategy">Content Strategy</label>
+                                <input 
+                                v-model="form.content_strategy"
+                                type="number" placeholder="20" class="form-control form-control-lg">
+                            </div>
                         </div>
 
                         <div class="service_group">
-                            <label for="research_insights">Research Insights</label>
-                            <input 
-                            v-model="form.research_insights"
-                            type="number" placeholder="20" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="research_insights">Research Insights</label>
+                                <input 
+                                v-model="form.research_insights"
+                                type="number" placeholder="20" class="form-control form-control-lg">
+                            </div>
                         </div>
 
                         <div class="service_group">
-                            <label for="platforms">E-commerce Platforms</label>
-                            <input 
-                            v-model="form.platforms"
-                            type="number" placeholder="75" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="platforms">E-commerce Platforms</label>
+                                <input 
+                                v-model="form.platforms"
+                                type="number" placeholder="75" class="form-control form-control-lg">
+                            </div>
                         </div>
 
                         <div class="service_group">
-                            <label for="activations">Brand Activations</label>
-                            <input 
-                            v-model="form.activations"
-                            type="number" placeholder="125" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="activations">Brand Activations</label>
+                                <input 
+                                v-model="form.activations"
+                                type="number" placeholder="125" class="form-control form-control-lg">
+                            </div>
+                            
                         </div>
 
                         <div class="service_group">
-                            <label for="activations">Marketing Campaigns</label>
-                            <input 
-                            v-model="form.campaigns"
-                            type="number" placeholder="80" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="activations">Marketing Campaigns</label>
+                                <input 
+                                v-model="form.campaigns"
+                                type="number" placeholder="80" class="form-control form-control-lg">
+                            </div>
+                            
                         </div>
 
                         <div class="service_group">
-                            <label for="consulting">Consulting</label>
-                            <input 
-                            v-model="form.consulting"
-                            type="number" placeholder="25" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="consulting">Consulting</label>
+                                <input 
+                                v-model="form.consulting"
+                                type="number" placeholder="25" class="form-control form-control-lg">
+                            </div>
                         </div>
                     </div>
                     <div class="info_single">
                         <div class="heading">Tracks</div>
                         <div class="service_group">
-                            <label for="brand_foundation">Brand Foundation</label>
-                            <input 
-                            v-model="form.brand_foundation"
-                            type="number" placeholder="220" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="brand_foundation">Brand Foundation</label>
+                                <input 
+                                v-model="form.brand_foundation"
+                                type="number" placeholder="220" class="form-control form-control-lg">
+                            </div>
+                            
                         </div>
 
                         <div class="service_group">
-                            <label for="brand_mgmt">Brand Management</label>
-                            <input 
-                            v-model="form.brand_mgmt"
-                            type="number" placeholder="120" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="brand_mgmt">Brand Management</label>
+                                <input 
+                                v-model="form.brand_mgmt"
+                                type="number" placeholder="120" class="form-control form-control-lg">
+                            </div>
                         </div>
 
                         <div class="service_group">
-                            <label for="brand_operations">Brand Operations</label>
-                            <input 
-                            v-model="form.brand_operations"
-                            type="number" placeholder="120" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="brand_operations">Brand Operations</label>
+                                <input 
+                                v-model="form.brand_operations"
+                                type="number" placeholder="120" class="form-control form-control-lg">
+                            </div>
                         </div>
 
                         <div class="service_group">
-                            <label for="brand_transitions">Brand Transitions</label>
-                            <input 
-                            v-model="form.brand_transitions"
-                            type="number" placeholder="220" class="form-control form-control-lg">
+                            <div class="frow justify-start">
+                                <label for="brand_transitions">Brand Transitions</label>
+                                <input 
+                                v-model="form.brand_transitions"
+                                type="number" placeholder="220" class="form-control form-control-lg">
+                            </div>
                         </div>
 
                         <div class="end_group">
@@ -159,134 +205,148 @@
         </section>
 
         <section v-if="step == 4">
-            <div class="large_heading">Decision Factors</div>
-            <div class="large_description">These two factors help us determine if this project is right for our team.  Our goal is to do impactful work and not put too much demand on our team.  Innovation is important, we can’t compromise that.  Does this project make sense for us?</div>
-            
+            <div class="large_heading_group">
+                <div class="large_heading">Decision Factors</div>
+                <div class="large_description">These two factors help us determine if this project is right for our team.  Our goal is to do impactful work and not put too much demand on our team.  Innovation is important, we can’t compromise that.  Does this project make sense for us?</div>
+            </div>
+        
             <div class="info_wrapper">
-                <div class="info_single">
-                    <div class="heading">Impact Rate</div>
-                    <div class="description">The impact value determines how much this work will impact the brand's ability to make money.</div>
-
-                    <select v-model="impact_rate">
-                        <option disabled value="">Please select one</option>
-                        <option v-bind:value="0">Lightly Impacts</option>
-                        <option v-bind:value="5">Moderately Impacts</option>
-                        <option v-bind:value="10">Heavily Impacts</option>
-                    </select>
-                </div>
-                <div class="info_single">
-                    <div class="heading">Timeline Rate</div>
-                    <div class="description">Based on our suggested timelines for our service offerings, does the client want to honor our timeline estimates?</div>
-
-                    <div class="radio_group">
-                        <input type="radio" name="radio" id="one" value="0" v-model="timeline_rate"><label for="one">Not Expedited</label>
-
-                        <input type="radio" name="radio" id="two" value="5" v-model="timeline_rate"><label for="two">Two Weeks Expedited</label>
-
-                        <input type="radio" name="radio" id="three" value="10" v-model="timeline_rate"><label for="three">30 Days Expedited</label>
+                <div class="frow justify-start">
+                    <div class="info_single">
+                        <div class="heading">Impact Rate</div>
+                        <div class="description">The impact value determines how much this work will impact the brand's ability to make money.</div>
+    
+                        <select class="form_select" v-model="impact_rate">
+                            <option disabled value="">Please select one</option>
+                            <option v-bind:value="0">Lightly Impacts</option>
+                            <option v-bind:value="5">Moderately Impacts</option>
+                            <option v-bind:value="10">Heavily Impacts</option>
+                        </select>
                     </div>
-                    
-                    <div class="end_group">
-                        <div class="heading">Impact Rate: {{ impact_rate }}</div>
-                        <div class="heading">Timeline Rate: {{ timeline_rate }}</div>
+                    <div class="info_single">
+                        <div class="heading">Timeline Rate</div>
+                        <div class="description">Based on our suggested timelines for our service offerings, does the client want to honor our timeline estimates?</div>
+    
+                        <div class="radio_group">
+                            <div class="frow justify-start">
+                                <input type="radio" name="radio" id="one" value="0" v-model="timeline_rate"><label for="one">Not Expedited</label>
+                            </div>
+                            
+                            <div class="frow justify-start">
+                                <input type="radio" name="radio" id="two" value="5" v-model="timeline_rate"><label for="two">Two Weeks Expedited</label>
+                            </div>
+    
+                            <div class="frow justify-start">
+                                <input type="radio" name="radio" id="three" value="10" v-model="timeline_rate"><label for="three">30 Days Expedited</label>
+                            </div>
+                        </div>
+                        
+                        <div class="end_group">
+                            <div class="heading">Impact Rate: {{ impact_rate }}</div>
+                            <div class="heading">Timeline Rate: {{ timeline_rate }}</div>
+                        </div>
                     </div>
                 </div>
+                
             </div>
         </section>
         
         <section v-if="step == 5">
-            <div class="large_heading">The Estimate is in!</div>
-            <div class="large_description">We have looked at all factors, now it's time to figure out if this project is right for us.  Here is what we know so far:</div>
-
-            <div class="info_wrapper">
-                <div class="info_single">
-                    <div class="info_group">
-                        <div class="heading">Project Information</div>
-                        <div class="group-copy">
-                            Client Name: {{ form.client_name }}
-                        </div>
-                        <div class="group-copy">
-                            Agency Rate: ${{ form.rate }}
-                        </div>
-                        <div class="group-copy">
-                            Established Business: {{ established }}
-                        </div>
-                        <div class="group-copy">
-                            Industry: {{ business_industry }}
-                        </div>
-                        <div class="group-copy">
-                            Business Impact: {{ impact_rate }}
-                        </div>
-                    </div>
-                    <div class="info_group">
-                        <div class="heading">Interested Services:</div>
-
-                        <div class="group_copy" v-if="form.brand_design != null">Brand Design: {{ form.brand_design }}</div>
-                        <div class="group_copy" v-if="form.research_insights != null">Research & Insights: {{ form.research_insights }}</div>
-                        <div class="group_copy" v-if="form.content_strategy != null">Content Strategy: {{ form.content_strategy }}</div>
-                        <div class="group_copy" v-if="form.platforms != null">Platforms: {{ form.platforms }}</div>
-                        <div class="group_copy" v-if="form.campaigns != null">Marketing Campaign: {{ form.campaigns }}</div>
-                        <div class="group_copy" v-if="form.activations != null">Activations: {{ form.activations }}</div>
-                        <div class="group_copy" v-if="form.consulting != null">Consulting: {{ form.consulting }}</div>
-                        <div class="group_copy" v-if="form.brand_foundation != null">Brand Foundation: {{ form.brand_foundation }}</div>
-                        <div class="group_copy" v-if="form.brand_mgmt != null">Brand Management: {{ form.brand_mgmt }}</div>
-                        <div class="group_copy" v-if="form.brand_operations != null">Brand Operations: {{ form.brand_operations }}</div>
-                        <div class="group_copy" v-if="form.brand_transitions != null">Brand Transitions: {{ form.brand_transitions }}</div>
-                    </div>
-                </div>
-                <div class="info_single">
-                    <div class="info_group">
-                        <div class="heading">Project Estimates</div>
-                        <div class="description">We have three estimates below that gives us a full landscape of this opportunity.  Choose wisely.</div>
-
-                        <div class="group_copy">
-                            Low Estimate: {{ low_estimate }}
-                        </div>
-                        <div class="group_copy">
-                            Low Estimate: {{ median_estimate }}
-                        </div>
-                        <div class="group_copy">
-                            Low Estimate: {{ high_estimate }}
-                        </div>
-                        <div class="group_copy_small">
-                            Suggested Monthly Payment: ${{ suggested_monthly_low }} &ndash; ${{ suggested_monthly_high }}
-                        </div>
-                        <div class="group_copy_small">
-                            Suggested 50% Deposit: ${{ suggested_deposit_low }} &ndash; ${{ suggested_deposit_high }}
-                        </div>
-                    </div>
-                    <div class="end_group">
-                        <div class="heading">Other Notes:</div>
-                        <div class="group_copy_small">Total Value: {{ service_total }}</div>
-                        <div class="group_copy_small">Ultra Value: {{ ultra_value }}</div>
-                        <div class="group_copy_small">Suggested Profit Margin: 65%</div>
-                        <div class="group_copy_small">Suggested Profit: ${{ profit }}</div>
-                    </div>
-                </div>
-                    
+            <div class="large_heading_group">
+                <div class="large_heading">The Estimate is in!</div>
+                <div class="large_description">We have looked at all factors, now it's time to figure out if this project is right for us.  Here is what we know so far:</div>
             </div>
             
+            <div class="info_wrapper">
+                <div class="frow justify-start">
+                    <div class="info_single">
+                        <div class="info_group">
+                            <div class="heading">Project Information</div>
+                            <div class="group-copy">
+                                Client Name: {{ form.client_name }}
+                            </div>
+                            <div class="group-copy">
+                                Agency Rate: ${{ form.rate }}
+                            </div>
+                            <div class="group-copy">
+                                Established Business: {{ established }}
+                            </div>
+                            <div class="group-copy">
+                                Industry: {{ business_industry }}
+                            </div>
+                            <div class="group-copy">
+                                Business Impact: {{ impact_rate }}
+                            </div>
+                        </div>
+                        <div class="info_group">
+                            <div class="heading">Interested Services:</div>
+    
+                            <div class="group_copy" v-if="form.brand_design != null">Brand Design: {{ form.brand_design }}</div>
+                            <div class="group_copy" v-if="form.research_insights != null">Research & Insights: {{ form.research_insights }}</div>
+                            <div class="group_copy" v-if="form.content_strategy != null">Content Strategy: {{ form.content_strategy }}</div>
+                            <div class="group_copy" v-if="form.platforms != null">Platforms: {{ form.platforms }}</div>
+                            <div class="group_copy" v-if="form.campaigns != null">Marketing Campaign: {{ form.campaigns }}</div>
+                            <div class="group_copy" v-if="form.activations != null">Activations: {{ form.activations }}</div>
+                            <div class="group_copy" v-if="form.consulting != null">Consulting: {{ form.consulting }}</div>
+                            <div class="group_copy" v-if="form.brand_foundation != null">Brand Foundation: {{ form.brand_foundation }}</div>
+                            <div class="group_copy" v-if="form.brand_mgmt != null">Brand Management: {{ form.brand_mgmt }}</div>
+                            <div class="group_copy" v-if="form.brand_operations != null">Brand Operations: {{ form.brand_operations }}</div>
+                            <div class="group_copy" v-if="form.brand_transitions != null">Brand Transitions: {{ form.brand_transitions }}</div>
+                        </div>
+                    </div>
+                    <div class="info_single">
+                        <div class="info_group">
+                            <div class="heading">Project Estimates</div>
+                            <div class="description">We have three estimates below that gives us a full landscape of this opportunity.  Choose wisely.</div>
+    
+                            <div class="group_copy">
+                                Low Estimate: {{ low_estimate }}
+                            </div>
+                            <div class="group_copy">
+                                Low Estimate: {{ median_estimate }}
+                            </div>
+                            <div class="group_copy">
+                                Low Estimate: {{ high_estimate }}
+                            </div>
+                            <div class="group_small">
+                                <div class="group_copy_small">
+                                    Suggested Monthly Payment: ${{ suggested_monthly_low }} &ndash; ${{ suggested_monthly_high }}
+                                </div>
+                                <div class="group_copy_small">
+                                    Suggested 50% Deposit: ${{ suggested_deposit_low }} &ndash; ${{ suggested_deposit_high }}
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="end_group">
+                            <div class="heading">Other Notes:</div>
+                            <div class="group_small">
+                                <div class="group_copy_small">Total Value: {{ service_total }}</div>
+                                <div class="group_copy_small">Ultra Value: {{ ultra_value }}</div>
+                                <div class="group_copy_small">Suggested Profit Margin: 65%</div>
+                                <div class="group_copy_small">Suggested Profit: ${{ profit }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <button 
         v-if="step != 1"
-        @click.prevent="prevStep">Previous Step</button>
+        @click.prevent="prevStep"
+        class="prev_button">Previous Step</button>
 
         <button 
         v-if="step != totalsteps"
-        @click.prevent="nextStep">Next Step</button>
-
-        
-
-        <!-- <button 
-        v-if="step == 5"
-        @click.prevent="sendInquiry">Get Estimate</button> -->
+        @click.prevent="nextStep"
+        class="next_button">Next Step</button>
 
         <button v-if="step == 5"
-        class="button is-warning" @click="resetForm()">Reset Form</button>
+        class="button is-warning reset_button" @click="resetForm()">Reset Form</button>
 
-        <button v-if="step == 1"
-        class="button is-warning" @click.prevent="nextStep">Get Started</button>
+        <!-- <button v-if="step == 1"
+        class="button is-warning" @click.prevent="nextStep">Get Started</button> -->
 
     </form>
 

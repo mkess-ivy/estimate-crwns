@@ -1,9 +1,178 @@
-form {
-    width: 75%;
-    margin: 5em auto;
-}
+#app {
+  padding: 35px 50px 50px; }
+  @media screen and (min-width: 768px) {
+    #app {
+      padding: 75px 75px 50px; } }
 
-input {
-    color: red !important;
-    font-weight: bold;
-}
+.info_wrapper {
+  padding: 15px 0; }
+  @media screen and (min-width: 768px) {
+    .info_wrapper {
+      padding: 50px 0; } }
+
+.large_heading_group .large_heading {
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase; }
+  @media screen and (min-width: 768px) {
+    .large_heading_group .large_heading {
+      font-size: 24px; } }
+.large_heading_group .large_description {
+  width: 100%;
+  padding: 10px 0 30px; }
+  @media screen and (min-width: 768px) {
+    .large_heading_group .large_description {
+      width: 45%; } }
+
+.description {
+  padding-bottom: 15px; }
+
+.group_small {
+  padding-top: 15px; }
+
+.group_copy_small {
+  text-transform: uppercase;
+  font-size: 12px; }
+
+button {
+  background: black !important;
+  text-transform: uppercase !important;
+  border-radius: 16px !important;
+  font-size: 14px !important;
+  padding: 8px 20px !important;
+  outline: none !important;
+  border: none !important;
+  position: fixed !important;
+  bottom: 25px !important; }
+  @media screen and (min-width: 768px) {
+    button {
+      bottom: 75px !important; } }
+
+.next_button, .reset_button {
+  left: 225px; }
+  @media screen and (min-width: 768px) {
+    .next_button, .reset_button {
+      left: 250px; } }
+
+.group {
+  padding-bottom: 30px; }
+  .group .group-copy {
+    width: 100%;
+    padding-right: 15px; }
+    @media screen and (min-width: 768px) {
+      .group .group-copy {
+        width: 40%; } }
+
+.info_single {
+  width: 100%;
+  padding-bottom: 50px; }
+  @media screen and (min-width: 768px) {
+    .info_single {
+      padding-bottom: 0; } }
+  @media screen and (min-width: 768px) {
+    .info_single {
+      width: 45%; } }
+  .info_single .heading {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    padding-bottom: 20px; }
+    @media screen and (min-width: 768px) {
+      .info_single .heading {
+        padding-bottom: 40px; } }
+  .info_single .form_select {
+    margin-top: 20px;
+    color: #000;
+    width: 200px !important; }
+
+.info_group {
+  padding-bottom: 50px; }
+
+.service_group {
+  padding-bottom: 20px; }
+  @media screen and (min-width: 768px) {
+    .service_group {
+      width: 45%;
+      padding-bottom: 0px; } }
+  .service_group label {
+    width: 100%;
+    color: black;
+    font-size: 16px;
+    margin-bottom: 0; }
+    @media screen and (min-width: 768px) {
+      .service_group label {
+        margin-bottom: 10px; } }
+
+.end_group {
+  padding: 20px 0;
+  border-top: 1px solid black;
+  margin-top: 75px; }
+  @media screen and (min-width: 768px) {
+    .end_group {
+      margin-top: 30px; } }
+  .end_group .heading {
+    padding-bottom: 5px; }
+
+.radio_group {
+  padding-top: 25px; }
+  .radio_group label {
+    width: 50%;
+    color: #000; }
+
+.form-control {
+  width: 100%;
+  outline: none;
+  background: transparent;
+  font-size: 16px !important; }
+  @media screen and (min-width: 768px) {
+    .form-control {
+      width: 30%; } }
+
+.form-control-lg {
+  font-size: 16px !important; }
+
+input:placeholder-shown {
+  color: #BF9D8D !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid black !important;
+  border-radius: 0 !important;
+  font-size: 14px !important; }
+  @media screen and (min-width: 768px) {
+    input:placeholder-shown {
+      text-align: center !important; } }
+
+select {
+  width: 100% !important; }
+  @media screen and (min-width: 768px) {
+    select {
+      width: 30% !important; } }
+
+body {
+  background: #F0CFBD;
+  font-family: "Montserrat", sans-serif; }
+
+header {
+  padding: 25px 75px; }
+  header .logo {
+    width: 45px; }
+    @media screen and (min-width: 768px) {
+      header .logo {
+        width: 75px; } }
+  header .crwns_logo {
+    text-align: center;
+    margin: 0 auto 25px; }
+    @media screen and (min-width: 768px) {
+      header .crwns_logo {
+        text-align: initial;
+        margin: 0; } }
+  header .header_small {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: auto; }
+    @media screen and (min-width: 768px) {
+      header .header_small {
+        margin: 0; } }
+
+/*# sourceMappingURL=style.css.map */

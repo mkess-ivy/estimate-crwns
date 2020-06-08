@@ -34,16 +34,27 @@
         }
     }
 }
-.description {
-    padding-bottom: 15px;;
+.heading_group {
+
+    padding-bottom: 20px;
+    .heading {
+        text-transform: uppercase;
+        font-weight: $w-bold;
+        font-size: 20px;
+        padding-bottom: 5px;
+    }
+    .description {
+        font-size: 14px;
+    }
 }
+
 
 .group_small {
     padding-top: 15px;
 }
 .group_copy_small {
-    text-transform: uppercase;
-    font-size: 12px;;
+    
+    font-size: 14px;
 }
 .group {
     padding-bottom: 50px;
@@ -124,16 +135,7 @@ button {
         padding-right: 30px;
     }
 
-    .heading {
-        text-transform: uppercase;
-        font-weight: $w-bold;
-        font-size: 20px;
-        padding-bottom: 20px;
-
-        @include tablet {
-            padding-bottom: 40px;
-        }
-    }
+    
     .form_select {
         margin-top: 20px;
         color: $black;
@@ -190,10 +192,19 @@ button {
 
 
 // Form Details
-.platform_control_label {
-    width: 300px;
-    color: $black;
+label {
+    color: $black !important;
+    font-size: 16px !important;
+
+    &.platform_control_label {
+        width: 300px;
+    }
+    &.project_estimate_label {
+        width: 35%;
+        
+    }
 }
+
 .platform-control {
     width: 75px !important;
     margin-right: 20px !important;
@@ -234,6 +245,9 @@ select {
 }
 .long_select {
     width: 65% !important;
+}
+.platform_select {
+    width: 50%;
 }
 textarea {
     border-color: $black;

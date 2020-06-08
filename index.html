@@ -46,64 +46,79 @@
             <div class="info_wrapper">
                 <div class="frow justify-between">
                     <div class="info_single">
-                        <div class="heading">Client Information</div>
-                        <div class="group">
-                            <div class="frow justify-start">
-                                <div class="group-copy">What's the client's name?</div>
-                                <input 
-                                v-model="form.client_name"
-                                type="text" placeholder="Roc Nation" class="form-control form-control-lg" >
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Client Information</div>
                             </div>
-                        </div>
-                        <div class="group">
-                            <div class="frow justify-start">
-                                <div class="group-copy">What's the business name?</div>
-                                <input 
-                                v-model="form.business_name"
-                                type="text" placeholder="Roc Nation" class="form-control form-control-lg" >
+                            
+                            <div class="group">
+                                <div class="frow justify-start">
+                                    <div class="group-copy">What's the client's name?</div>
+                                    <input 
+                                    v-model="form.client_name"
+                                    type="text" placeholder="Roc Nation" class="form-control form-control-lg" >
+                                </div>
                             </div>
-                        </div>
-                        <div class="group">
-                            
-                                <div class="group-copy">What's the business opportunity?</div>
-                                <textarea 
-                                v-model="form.business_opportunity"
-                                type="text" placeholder="What's the project description" class="textbox" ></textarea>
-                            
-                        </div>
-            
-                        <div class="group">
-                            <div class="frow justify-start">
-                                <div class="group-copy">Has client been in business 2 - 5 years?</div>
-                                <select v-model="established">
-                                    <option disabled value="">Established?</option>
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                </select>
+                            <div class="group">
+                                <div class="frow justify-start">
+                                    <div class="group-copy">What's the business name?</div>
+                                    <input 
+                                    v-model="form.business_name"
+                                    type="text" placeholder="Roc Nation" class="form-control form-control-lg" >
+                                </div>
+                            </div>
+                            <div class="group">
+                                
+                                    <div class="group-copy">What's the business opportunity?</div>
+                                    <textarea 
+                                    v-model="form.business_opportunity"
+                                    type="text" placeholder="What's the project description" class="textbox" ></textarea>
+                                
+                            </div>
+                
+                            <div class="group">
+                                <div class="frow justify-start">
+                                    <div class="group-copy">Has client been in business 2 - 5 years?</div>
+                                    <select v-model="established">
+                                        <option disabled value="">Established?</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="info_single">
-                        <div class="heading">Business Industry</div>
-                        <div class="group">
-                            <div class="frow justify-start">
-                                <select v-model="business_industry" class="long_select">
-                                    <option disabled value="">Business Industry</option>
-                                    <option>Retail Brand</option>
-                                    <option>Wellness Brand</option>
-                                    <option>Media Brand</option>
-                                </select>
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Business Industry</div>
+                            </div>
+                            
+                            <div class="group">
+                                <div class="frow justify-start">
+                                    <select v-model="business_industry" class="long_select">
+                                        <option disabled value="">Business Industry</option>
+                                        <option>Retail Brand</option>
+                                        <option>Wellness Brand</option>
+                                        <option>Media Brand</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="heading">Agency Rate</div>
-                        <div class="group">
+                        
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Agency Rate</div>
+                            </div>
                             
-                            <div class="group-copy longer">Our agency rate is typically $75 because we understand the value that our team brings to any business.  We have a sliding scale of $50 - $150.  What agency rate do we want to use for this project?</div>
-                            <input 
-                            v-model="form.rate"
-                            type="number" placeholder="$75" class="form-control form-control-lg" >
-                            
+                            <div class="group">
+                                
+                                <div class="group-copy longer">Our agency rate is typically $75 because we understand the value that our team brings to any business.  We have a sliding scale of $50 - $150.  What agency rate do we want to use for this project?</div>
+                                <input 
+                                v-model="form.rate"
+                                type="number" placeholder="$75" class="form-control form-control-lg" >
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,8 +137,11 @@
                     <div class="info_single">
                 
                         <div class="info_group">
-                            <div class="heading">Type of Platform</div>
-                            <select v-model="type_platform">
+                            <div class="heading_group">
+                                <div class="heading">Type of Platform</div>
+                            </div>
+                            
+                            <select v-model="type_platform" class="platform_select">
                                 <option disabled value="">Platform?</option>
                                 <option>One Page Website</option>
                                 <option>Portfolio Website</option>
@@ -135,7 +153,10 @@
                         </div>
 
                         <div class="info_group">
-                            <div class="heading">Estimates</div>
+                            <div class="heading_group">
+                                <div class="heading">Estimates</div>
+                            </div>
+                            
                             <div class="group">
                                 <div class="group-copy">Design: {{ design_total }}</div>
                                 <div class="group-copy">Development: {{ dev_total }}</div>
@@ -145,20 +166,22 @@
                         </div>
 
                         <div class="end_group">
-                            <div class="heading">Platform Total: {{ platform_total }}</div>
-                            <div class="heading">Baseline Rate: ${{ platform_rate }}</div>
+                            <div class="heading_group">
+                                <div class="heading">Platform Total: {{ platform_total }}</div>
+                                <div class="heading">Baseline Rate: ${{ platform_rate }}</div>
+                            </div>
 
                             <div class="info_group">
-                                <div class="description">We are developing a {{ type_platform}} platform.  Does this estimate make sense for the work our team has to complete?</div>
+                                <div class="description">We are developing a <span style="font-weight: bold;">{{ type_platform}}</span> platform.  Does this estimate make sense for the work our team has to complete?</div>
                                 
                             </div>
                         </div>
-
-                        
                     </div>
                     <div class="info_single pages">
                         <div class="info_group">
-                            <div class="heading">Pages</div>
+                            <div class="heading_group">
+                                <div class="heading">Pages</div>
+                            </div>
 
                             <div class="page_group">
                                 <div class="frow justify-start">
@@ -413,8 +436,10 @@
                             </div>
                         </div>
                         <div class="info_group">
-                            <div class="heading">Other</div>
-
+                            <div class="heading_group">
+                                <div class="heading">Other</div>
+                            </div>
+                        
                             <div class="page_group">
                                 <div class="frow justify-start">
                                     <label for="brand_design" class="platform_control_label">Testing & Deployment</label>
@@ -480,8 +505,10 @@
             <div class="info_wrapper">
                 <div class="frow justify-between">
                     <div class="info_single">
-                        <div class="heading">A la carte services</div>
-
+                        <div class="heading_group">
+                            <div class="heading">A la carte services</div>
+                        </div>
+                        
                         <div class="service_group">
                             <div class="frow justify-start">
                                 <label for="brand_design">Brand Design</label>
@@ -546,7 +573,10 @@
                         </div>
                     </div>
                     <div class="info_single">
-                        <div class="heading">Tracks</div>
+                        <div class="heading_group">
+                            <div class="heading">Tracks</div>
+                        </div>
+                        
                         <div class="service_group">
                             <div class="frow justify-start">
                                 <label for="brand_foundation">Brand Foundation</label>
@@ -603,9 +633,11 @@
             <div class="info_wrapper">
                 <div class="frow justify-start">
                     <div class="info_single">
-                        <div class="heading">Impact Rate</div>
-                        <div class="description">The impact value determines how much this work will impact the brand's ability to make money.</div>
-    
+                        <div class="heading_group">
+                            <div class="heading">Impact Rate</div>
+                            <div class="description">The impact value determines how much this work will impact the brand's ability to make money.</div>
+                        </div>
+                        
                         <select class="form_select" v-model="impact_rate">
                             <option disabled value="">Please select one</option>
                             <option v-bind:value="0">Lightly Impacts</option>
@@ -614,9 +646,11 @@
                         </select>
                     </div>
                     <div class="info_single">
-                        <div class="heading">Timeline Rate</div>
-                        <div class="description">Based on our suggested timelines for our service offerings, does the client want to honor our timeline estimates?</div>
-    
+                        <div class="heading_group">
+                            <div class="heading">Timeline Rate</div>
+                            <div class="description">Based on our suggested timelines for our service offerings, does the client want to honor our timeline estimates?</div>
+                        </div>
+                        
                         <div class="radio_group">
                             <div class="frow justify-start">
                                 <input type="radio" name="radio" id="one" value="0" v-model="timeline_rate"><label for="one">Not Expedited</label>
@@ -651,7 +685,10 @@
                 <div class="frow justify-start">
                     <div class="info_single">
                         <div class="info_group">
-                            <div class="heading">Project Information</div>
+                            <div class="heading_group">
+                                <div class="heading">Project Information</div>
+                            </div>
+                            
                             <div class="group-copy">
                                 Client Name: {{ form.client_name }}
                             </div>
@@ -669,12 +706,14 @@
                             </div>
                         </div>
                         <div class="info_group">
-                            <div class="heading">Interested Services:</div>
-    
+                            <div class="heading_group">
+                                <div class="heading">Interested Services:</div>
+                            </div>
+                            
                             <div class="group_copy" v-if="form.brand_design != null">Brand Design: {{ form.brand_design }}</div>
                             <div class="group_copy" v-if="form.research_insights != null">Research & Insights: {{ form.research_insights }}</div>
                             <div class="group_copy" v-if="form.content_strategy != null">Content Strategy: {{ form.content_strategy }}</div>
-                            <div class="group_copy" v-if="form.platforms != null">Platforms: {{ form.platforms }}</div>
+                            <div class="group_copy" v-if="platform_total != 0">Platforms: {{ platform_total }}</div>
                             <div class="group_copy" v-if="form.campaigns != null">Marketing Campaign: {{ form.campaigns }}</div>
                             <div class="group_copy" v-if="form.activations != null">Activations: {{ form.activations }}</div>
                             <div class="group_copy" v-if="form.consulting != null">Consulting: {{ form.consulting }}</div>
@@ -686,35 +725,217 @@
                     </div>
                     <div class="info_single">
                         <div class="info_group">
-                            <div class="heading">Project Estimates</div>
-                            <div class="description">We have three estimates below that gives us a full landscape of this opportunity.  Choose wisely.</div>
-    
-                            <div class="group_copy">
-                                Low Estimate: {{ low_estimate }}
-                            </div>
-                            <div class="group_copy">
-                                Low Estimate: {{ median_estimate }}
-                            </div>
-                            <div class="group_copy">
-                                Low Estimate: {{ high_estimate }}
-                            </div>
-                            <div class="group_small">
-                                <div class="group_copy_small">
-                                    Suggested Monthly Payment: ${{ suggested_monthly_low }} &ndash; ${{ suggested_monthly_high }}
-                                </div>
-                                <div class="group_copy_small">
-                                    Suggested 50% Deposit: ${{ suggested_deposit_low }} &ndash; ${{ suggested_deposit_high }}
-                                </div>
+                            <div class="heading_group">
+                                <div class="heading">Project Estimates</div>
+                                <div class="description">We have three estimates below that gives us a full landscape of this opportunity.  Choose wisely.</div>
                             </div>
                             
+                            <div class="group_copy">
+                                Low Estimate: ${{ low_estimate }}
+                            </div>
+                            <div class="group_copy">
+                                Median Estimate: ${{ median_estimate }}
+                            </div>
+                            <div class="group_copy">
+                                High Estimate: ${{ high_estimate }}
+                            </div>
+                        </div>
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Payment Information</div>
+                            </div>
+                            
+                            <div class="group_small">
+                                <div class="group_copy_small">
+                                    Suggested Monthly Payment: ${{ deposit_monthly_low }} &ndash; ${{ deposit_monthly_high }}
+                                </div>
+                                <div class="group_copy_small">
+                                    Suggested 50% Deposit: ${{ deposit_half_low }} &ndash; ${{ deposit_half_high }}
+                                </div>
+                                <div class="group_copy_small">
+                                    Suggested 25% Deposit: ${{ deposit_quarter_low }} &ndash; ${{ deposit_quarter_high }}
+                                </div>
+                            </div>
                         </div>
                         <div class="end_group">
-                            <div class="heading">Other Notes:</div>
+                            <div class="heading_group">
+                                <div class="heading">Other Notes:</div>
+                            </div>
+            
                             <div class="group_small">
                                 <div class="group_copy_small">Total Value: {{ service_total }}</div>
                                 <div class="group_copy_small">Ultra Value: {{ ultra_value }}</div>
                                 <div class="group_copy_small">Suggested Profit Margin: 65%</div>
                                 <div class="group_copy_small">Suggested Profit: ${{ profit }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section v-if="step == 7">
+            <div class="large_heading_group">
+                <div class="large_heading">Preparing the Proposal</div>
+                <div class="large_description">A few more questions to help us gather our project estimate for our client.  Once the next page loads, print and save as PDF.</div>
+            </div>
+            
+            <div class="info_wrapper">
+                <div class="frow justify-start">
+                    <div class="info_single">
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Reminder of Estimates</div>
+                                <div class="description">
+                                    We have three estimates below that gives us a full landscape of this opportunity.  Choose wisely.
+                                </div>
+                            </div>
+                            
+                            <div class="group_copy">
+                                Low Estimate: ${{ low_estimate }}
+                            </div>
+                            <div class="group_copy">
+                                Median Estimate: ${{ median_estimate }}
+                            </div>
+                            <div class="group_copy">
+                                High Estimate: ${{ high_estimate }}
+                            </div>
+                            <div class="group_small">
+                                <div class="group_copy_small">
+                                    Suggested Monthly Payment: ${{ deposit_monthly_low }} &ndash; ${{ deposit_monthly_high }}
+                                </div>
+                                <div class="group_copy_small">
+                                    Suggested 50% Deposit: ${{ deposit_half_low }} &ndash; ${{ deposit_half_high }}
+                                </div>
+                                <div class="group_copy_small">
+                                    Suggested 25% Deposit: ${{ deposit_quarter_low }} &ndash; ${{ deposit_quarter_high }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Project Estimate</div>
+                            </div>
+                            
+                            <div class="group">
+                                <div class="frow justify-start">
+                                    <label class="project_estimate_label">Our Estimate</label>
+                                    <input 
+                                    v-model="project_estimate"
+                                    type="number" placeholder="20" class="form-control form-control-lg">
+                                </div>
+                                <div class="frow justify-start">
+                                    <label class="project_estimate_label">Projected Timeline</label>
+                                    <input 
+                                    v-model="project_timeline"
+                                    type="text" placeholder="2 weeks" class="form-control form-control-lg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info_single">
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Payment Options</div>
+                                <div class="description">Select a payment option for this project.</div>
+                            </div>
+                            
+                            <div class="group">
+                                <div class="frow justify-start">
+                                    <select v-model="payment_option" class="long_select">
+                                        <option disabled value="">Payment Option</option>
+                                        <option>50% Deposit</option>
+                                        <option>25% Deposit</option>
+                                        <option>First Month's Deposit</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Account Manager</div>
+                                <div class="description">Who will be working with the client into the onboarding process.</div>
+                            </div>
+                            
+                            <div class="group">
+                                <div class="frow justify-start">
+                                    <select v-model="account_manager" class="long_select">
+                                        <option disabled value="">Account Manager</option>
+                                        <option>Montier Kess</option>
+                                        <option>Chavon Henderson</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section v-if="step == 8">
+            <div class="large_heading_group">
+                <div class="large_heading">SVNCRWNS Project Proposal</div>
+                <div class="large_description">Thank you for selecting our team to work with you in this phase of your business journey.  Please review our proposal details below.</div>
+                <div class="group_copy_small">Proposal Issued: {{ timestamp }}</div>
+            </div>
+            
+            <div class="info_wrapper">
+                <div class="frow justify-start">
+                    <div class="info_single">
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Client Information</div>
+                            </div>
+                            
+                            <div class="group-copy">
+                                Client Name: {{ form.client_name }}
+                            </div>
+                            <div class="group-copy">
+                                Business Name: {{ form.business_name }}
+                            </div>
+                        </div>
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Contact Information</div>
+                            </div>
+                            <div class="group-copy">
+                                Account Manager: {{ account_manager }}
+                            </div>
+                            <div class="group-copy">
+                                {{ business_email }}
+                            </div>
+                            <div class="group-copy">
+                                {{ business_website }}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="info_single">
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Project Information</div>
+                                <div class="description">We have three estimates below that gives us a full landscape of this opportunity.  Choose wisely.</div>
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Payment Information</div>
+                            </div>
+                            
+                            <div class="group_small">
+                                <div class="group_copy_small">
+                                    Suggested Monthly Payment: ${{ deposit_monthly_low }} &ndash; ${{ deposit_monthly_high }}
+                                </div>
+                                <div class="group_copy_small">
+                                    Suggested 50% Deposit: ${{ deposit_half_low }} &ndash; ${{ deposit_half_high }}
+                                </div>
+                                <div class="group_copy_small">
+                                    Suggested 25% Deposit: ${{ deposit_quarter_low }} &ndash; ${{ deposit_quarter_high }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -751,19 +972,24 @@
 
             data: {
                 step: 1,
-                totalsteps: 6,
+                totalsteps: 8,
                 impact_rate: '',
                 timeline_rate: '',
                 business_industry: '',
                 established: '',
                 type_platform: '',
+                project_timeline: '',
+                project_estimate: '',
+                account_manager: '',
+                timestamp: "",
+                business_email: "studio@svncrwns.com",
+                business_website: "www.svncrwns.com",
 
                 form: {
 
                     brand_design: null,
                     research_insights: null,
                     content_strategy: null,
-                    platforms: null,
                     campaigns: null,
                     activations: null,
                     consulting: null,
@@ -774,7 +1000,6 @@
                     rate: null,
                     client_name: null,
                     business_name: null
-                    
                 },
 
                 platform: {
@@ -830,6 +1055,10 @@
                 
             },
 
+            created() {
+                setInterval(this.getNow, 1000);
+            },
+
             computed: {
                 
                 service_total: function () {
@@ -857,17 +1086,23 @@
                 high_estimate: function() {
                     return this.ultra_value * Number(this.form.rate) * 1.25;
                 },
-                suggested_monthly_low: function() {
+                deposit_monthly_low: function() {
                     return this.low_estimate / 12;
                 },
-                suggested_monthly_high: function() {
+                deposit_monthly_high: function() {
                     return this.high_estimate / 12;
                 },
-                suggested_deposit_low: function() {
+                deposit_half_low: function() {
                     return this.low_estimate * 0.5;
                 },
-                suggested_deposit_high: function() {
+                deposit_half_high: function() {
                     return this.high_estimate * 0.5;
+                },
+                deposit_quarter_low: function() {
+                    return this.low_estimate * 0.25;
+                },
+                deposit_quarter_high: function() {
+                    return this.high_estimate * 0.25;
                 },
                 profit: function() {
                     return this.median_estimate * 0.65;
@@ -886,6 +1121,15 @@
                 },
                 options_total: function() {
                     return Number(this.platform.meetings) + Number(this.platform.project_setup) + Number(this.platform.accts_setup) + Number(this.platform.product_uploads);
+                },
+                estimate_deposit_monthly: function() {
+                    return Number(this.project_estimate) / 12;
+                },
+                estimate_deposit_half: function() {
+                    return Number(this.project_estimate) / 0.5;
+                },
+                estimate_deposit_quarter: function() {
+                    return Number(this.project_estimate) / 0.25;
                 }
             },
 
@@ -915,6 +1159,11 @@
                 },
                 printWindow: function () {		
 	                window.print();
+                },
+                getNow: function() {
+                    const today = new Date();
+                    const date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+                    this.timestamp = date;
                 }
 
             },

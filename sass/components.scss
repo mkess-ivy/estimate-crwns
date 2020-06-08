@@ -108,12 +108,13 @@ button {
     //     bottom: 75px !important;
     // }
 }
-.next_button, .reset_button {
-    // left: 225px;
-
-    // @include tablet {
-    //     left: 250px;
-    // }
+.reset_button {
+    background: red !important;
+    border: 1px solid red;
+}
+.print_button {
+    background: green !important;
+    border: 1px solid green;
 }
 
 
@@ -252,4 +253,10 @@ select {
 textarea {
     border-color: $black;
     width: 90%;
+}
+
+// Misc
+.bold {
+    font-weight: $w-bold;
+    text-transform: uppercase;
 }

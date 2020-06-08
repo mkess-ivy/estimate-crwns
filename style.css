@@ -77,6 +77,14 @@ button {
   border: none !important;
   margin-right: 15px !important; }
 
+.reset_button {
+  background: red !important;
+  border: 1px solid red; }
+
+.print_button {
+  background: green !important;
+  border: 1px solid green; }
+
 .info_single {
   width: 100%;
   padding-bottom: 50px; }
@@ -181,6 +189,10 @@ select {
 textarea {
   border-color: #000;
   width: 90%; }
+
+.bold {
+  font-weight: 700;
+  text-transform: uppercase; }
 
 body {
   background: #F0CFBD;

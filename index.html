@@ -141,7 +141,7 @@
                                 <div class="heading">Type of Platform</div>
                             </div>
                             
-                            <select v-model="type_platform" class="platform_select">
+                            <select v-model="type_platform" class="long_select">
                                 <option disabled value="">Platform?</option>
                                 <option>One Page Website</option>
                                 <option>Portfolio Website</option>
@@ -172,7 +172,7 @@
                             </div>
 
                             <div class="info_group">
-                                <div class="description">We are developing a <span style="font-weight: bold;">{{ type_platform}}</span> platform.  Does this estimate make sense for the work our team has to complete?</div>
+                                <div class="description">We are developing a <span class="bold">{{ type_platform}}</span> platform.  Does this estimate make sense for the work our team has to complete?</div>
                                 
                             </div>
                         </div>
@@ -844,8 +844,8 @@
                             <div class="group">
                                 <div class="frow justify-start">
                                     <select v-model="payment_option" class="long_select">
-                                        <option disabled value="">Payment Option</option>
-                                        <option>50% Deposit</option>
+                                        <option disabled value="">Select Payment Option</option>
+                                        <option >50% Deposit</option>
                                         <option>25% Deposit</option>
                                         <option>First Month's Deposit</option>
                                     </select>
@@ -861,7 +861,7 @@
                             <div class="group">
                                 <div class="frow justify-start">
                                     <select v-model="account_manager" class="long_select">
-                                        <option disabled value="">Account Manager</option>
+                                        <option disabled value="">Select Account Manager</option>
                                         <option>Montier Kess</option>
                                         <option>Chavon Henderson</option>
                                     </select>
@@ -901,8 +901,13 @@
                                 <div class="heading">Contact Information</div>
                             </div>
                             <div class="group-copy">
-                                Account Manager: {{ account_manager }}
+                                Account Manager: 
+                                
+                                <div class="bold">
+                                    {{ account_manager }}
+                                </div>
                             </div>
+                            <br/>
                             <div class="group-copy">
                                 {{ business_email }}
                             </div>
@@ -910,32 +915,54 @@
                                 {{ business_website }}
                             </div>
                             
+                            
                         </div>
                     </div>
                     <div class="info_single">
                         <div class="info_group">
                             <div class="heading_group">
                                 <div class="heading">Project Information</div>
-                                <div class="description">We have three estimates below that gives us a full landscape of this opportunity.  Choose wisely.</div>
+                                <div class="description">{{ form.business_opportunity}}</div>
+                            </div>
+                        </div>
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Services</div>
                             </div>
                             
+                            <div class="group_copy" v-if="form.brand_design != null">Brand Design: {{ form.brand_design }}</div>
+                            <div class="group_copy" v-if="form.research_insights != null">Research & Insights: {{ form.research_insights }}</div>
+                            <div class="group_copy" v-if="form.content_strategy != null">Content Strategy: {{ form.content_strategy }}</div>
+                            <div class="group_copy" v-if="platform_total != 0">Platforms: {{ platform_total }}</div>
+                            <div class="group_copy" v-if="form.campaigns != null">Marketing Campaign: {{ form.campaigns }}</div>
+                            <div class="group_copy" v-if="form.activations != null">Activations: {{ form.activations }}</div>
+                            <div class="group_copy" v-if="form.consulting != null">Consulting: {{ form.consulting }}</div>
+                            <div class="group_copy" v-if="form.brand_foundation != null">Brand Foundation: {{ form.brand_foundation }}</div>
+                            <div class="group_copy" v-if="form.brand_mgmt != null">Brand Management: {{ form.brand_mgmt }}</div>
+                            <div class="group_copy" v-if="form.brand_operations != null">Brand Operations: {{ form.brand_operations }}</div>
+                            <div class="group_copy" v-if="form.brand_transitions != null">Brand Transitions: {{ form.brand_transitions }}</div>
                             
+                            <div class="group">
+                                Project Timeline: {{ project_timeline }}
+                            </div>
+                        </div>
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Project Estimate</div>
+                            </div>
+                            
+                            <div class="group_small">
+                                ${{ project_estimate }}
+                            </div>
                         </div>
                         <div class="info_group">
                             <div class="heading_group">
                                 <div class="heading">Payment Information</div>
+                                <div class="description">Please submit your project deposit to begin work.</div>
                             </div>
                             
                             <div class="group_small">
-                                <div class="group_copy_small">
-                                    Suggested Monthly Payment: ${{ deposit_monthly_low }} &ndash; ${{ deposit_monthly_high }}
-                                </div>
-                                <div class="group_copy_small">
-                                    Suggested 50% Deposit: ${{ deposit_half_low }} &ndash; ${{ deposit_half_high }}
-                                </div>
-                                <div class="group_copy_small">
-                                    Suggested 25% Deposit: ${{ deposit_quarter_low }} &ndash; ${{ deposit_quarter_high }}
-                                </div>
+                                {{ project_deposit }}
                             </div>
                         </div>
                     </div>
@@ -957,6 +984,12 @@
 
                 <button v-if="step != 1"
                 class="button is-warning reset_button" @click="resetForm()">Reset Form</button>
+
+                <button v-if="step == 3"
+                class="button is-warning print_button" @click.prevent="printWindow">Print Form</button>
+
+                <button v-if="step == 8"
+                class="button is-warning print_button" @click.prevent="printWindow">Print Form</button>
 
                 <!-- <button v-if="step == 1"
                 class="button is-warning" @click.prevent="nextStep">Get Started</button> -->
@@ -981,9 +1014,11 @@
                 project_timeline: '',
                 project_estimate: '',
                 account_manager: '',
-                timestamp: "",
-                business_email: "studio@svncrwns.com",
-                business_website: "www.svncrwns.com",
+                timestamp: '',
+                business_email: 'studio@svncrwns.com',
+                business_website: 'www.svncrwns.com',
+                project_deposit: '',
+                payment_option: '',
 
                 form: {
 
@@ -999,7 +1034,8 @@
                     brand_transitions: null,
                     rate: null,
                     client_name: null,
-                    business_name: null
+                    business_name: null,
+                    business_opportunity: null
                 },
 
                 platform: {

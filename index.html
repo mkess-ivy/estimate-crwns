@@ -139,7 +139,7 @@
                             <div class="group">
                                 <div class="group-copy">Design: {{ design_total }}</div>
                                 <div class="group-copy">Development: {{ dev_total }}</div>
-                                <div class="group-copy">Testing & Deployment: {{ deploy }}</div>
+                                <div class="group-copy">Testing & Deployment: {{ platform.deploy }}</div>
                                 <div class="group-copy">Other Considerations: {{ options_total }}</div>
                             </div>
                         </div>
@@ -512,9 +512,7 @@
                         <div class="service_group">
                             <div class="frow justify-start">
                                 <label for="platforms">E-commerce Platforms</label>
-                                <input 
-                                v-model="form.platforms"
-                                type="number" placeholder="75" class="form-control form-control-lg">
+                                {{ platform_total }}
                             </div>
                         </div>
 
@@ -736,7 +734,7 @@
                 @click.prevent="nextStep"
                 class="next_button">Next Step</button>
 
-                <button v-if="step == 6"
+                <button v-if="step != 1"
                 class="button is-warning reset_button" @click="resetForm()">Reset Form</button>
 
                 <!-- <button v-if="step == 1"
@@ -758,9 +756,6 @@
                 timeline_rate: '',
                 business_industry: '',
                 established: '',
-                design_total: '',
-                dev_total: '',
-                options_total: '',
                 type_platform: '',
 
                 form: {
@@ -838,7 +833,7 @@
             computed: {
                 
                 service_total: function () {
-                    return Number(this.form.brand_design) + Number(this.form.research_insights) + Number(this.form.content_strategy) + Number(this.form.platforms) + Number(this.form.campaigns) + Number(this.form.activations) + Number(this.form.consulting) + Number(this.form.brand_foundation) + Number(this.form.brand_mgmt) + Number(this.form.brand_operations) + Number(this.form.brand_transitions);
+                    return Number(this.form.brand_design) + Number(this.form.research_insights) + Number(this.form.content_strategy) + Number(this.platform_total) + Number(this.form.campaigns) + Number(this.form.activations) + Number(this.form.consulting) + Number(this.form.brand_foundation) + Number(this.form.brand_mgmt) + Number(this.form.brand_operations) + Number(this.form.brand_transitions);
 
                     return false;
                 },
@@ -884,7 +879,13 @@
                     return this.platform_total * this.form.rate;
                 },
                 design_total: function() {
-
+                    return Number(this.platform.home_design) + Number(this.platform.about_design) + Number(this.platform.shop_allprod_design) + Number(this.platform.shop_allcoll_design) + Number(this.platform.shop_singlecoll_design) + Number(this.platform.product_single_design) + Number(this.platform.cust_serv_design) + Number(this.platform.policies_design) + Number(this.platform.contact_design) + Number(this.platform.services_design) + Number(this.platform.work_design) + Number(this.platform.work_single_design) + Number(this.platform.faqs_design) + Number(this.platform.cart_design) + Number(this.platform.newsletter_design) + Number(this.platform.blog_design) + Number(this.platform.stockist_design) + Number(this.platform.lookbook_design) + Number(this.platform.custom_1_design) + Number(this.platform.custom_2_design) + Number(this.platform.custom_3_design);
+                },
+                dev_total: function() {
+                    return Number(this.platform.home_dev) + Number(this.platform.about_dev) + Number(this.platform.shop_allcoll_dev) + Number(this.platform.shop_allprod_dev) + Number(this.platform.shop_singlecoll_dev) + Number(this.platform.product_single_dev) + Number(this.platform.cust_serv_dev) + Number(this.platform.policies_dev) + Number(this.platform.contact_dev) + Number(this.platform.services_dev) + Number(this.platform.work_dev) + Number(this.platform.work_single_dev) + Number(this.platform.faqs_dev) + Number(this.platform.cart_dev) + Number(this.platform.newsletter_dev) + Number(this.platform.blog_dev) + Number(this.platform.stockist_dev) + Number(this.platform.lookbook_dev) + Number(this.platform.custom_1_dev) + Number(this.platform.custom_2_dev) + Number(this.platform.custom_3_dev);
+                },
+                options_total: function() {
+                    return Number(this.platform.meetings) + Number(this.platform.project_setup) + Number(this.platform.accts_setup) + Number(this.platform.product_uploads);
                 }
             },
 

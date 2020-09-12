@@ -11,7 +11,7 @@
     
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="vendor/frow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frow@3/dist/frow.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,500&display=swap" rel="stylesheet">
 
     <title>Proposals @ SVNCRWNS</title>
@@ -22,9 +22,14 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div class="fixed-header">
-      <img src="/assets/svncrwns-logo.png" />
+
+    <div class="fixed_header">
+      <div class="frow justify-between">
+        <div class="fixed_header_col">SVNCRWNS</div>
+        <div class="fixed_header_col last">Project Estimator</div>
+      </div>
     </div>
+
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>

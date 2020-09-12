@@ -26,7 +26,7 @@
                                     <div class="group-copy">What's the client's name?</div>
                                     <input 
                                     v-model="form.client_name"
-                                    type="text" placeholder="Roc Nation" class="form-control form-control-lg" >
+                                    type="text" placeholder="Nasir Jones" class="form-control form-control-lg" >
                                 </div>
                             </div>
                             <div class="group">
@@ -34,7 +34,7 @@
                                     <div class="group-copy">What's the business name?</div>
                                     <input 
                                     v-model="form.business_name"
-                                    type="text" placeholder="Roc Nation" class="form-control form-control-lg" >
+                                    type="text" placeholder="Mass Appeal" class="form-control form-control-lg" >
                                 </div>
                             </div>
                             <div class="group">
@@ -98,56 +98,16 @@
 
         <section v-if="step == 3">
             <div class="large_heading_group">
-                <div class="large_heading">Are we working on a platform?</div>
-                <div class="large_description">A list of pages with estimates for Design, Development, Testing and Deployment phases of this project.  Helps us forecast how much work is really needed because all platforms are different.  Print and Save as PDF before moving forward.</div>
+                <div class="large_heading">Platform Planning</div>
+                <div class="large_description">Estimates for Design, Development, Testing and Deployment phases of the project.  Print and Save as PDF before moving forward.</div>
             </div>
             
             <div class="info_wrapper">
                 <div class="frow justify-between">
                     <div class="info_single">
                 
-                        <div class="info_group">
-                            <div class="heading_group">
-                                <div class="heading">Type of Platform</div>
-                            </div>
-                            
-                            <select v-model="type_platform" class="long_select">
-                                <option disabled value="">Platform?</option>
-                                <option>One Page Website</option>
-                                <option>Portfolio Website</option>
-                                <option>Business Website</option>
-                                <option>E-commerce Website</option>
-                                <option>Custom Website</option>
-                                <option>E-mail List</option>
-                            </select>
-                        </div>
+                        
 
-                        <div class="info_group">
-                            <div class="heading_group">
-                                <div class="heading">Estimates</div>
-                            </div>
-                            
-                            <div class="group">
-                                <div class="group-copy">Design: {{ design_total }}</div>
-                                <div class="group-copy">Development: {{ dev_total }}</div>
-                                <div class="group-copy">Testing & Deployment: {{ platform.deploy }}</div>
-                                <div class="group-copy">Other Considerations: {{ options_total }}</div>
-                            </div>
-                        </div>
-
-                        <div class="end_group">
-                            <div class="heading_group">
-                                <div class="heading">Platform Total: {{ platform_total }}</div>
-                                <div class="heading">Baseline Rate: ${{ platform_rate }}</div>
-                            </div>
-
-                            <div class="info_group">
-                                <div class="description">We are developing a <span class="bold">{{ type_platform}}</span> platform.  Does this estimate make sense for the work our team has to complete?</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info_single pages">
                         <div class="info_group">
                             <div class="heading_group">
                                 <div class="heading">Pages</div>
@@ -456,13 +416,50 @@
                             </div>
 
                         </div>
-                        
-
-
                     </div>
+                    <div class="info_single pages">
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Type of Platform</div>
+                            </div>
+                            
+                            <select v-model="type_platform" class="long_select">
+                                <option disabled value="">Platform?</option>
+                                <option>One Page Website</option>
+                                <option>Portfolio Website</option>
+                                <option>Business Website</option>
+                                <option>E-commerce Website</option>
+                                <option>Custom Website</option>
+                                <option>E-mail List</option>
+                            </select>
+                        </div>
 
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Estimates</div>
+                            </div>
+                            
+                            <div class="">
+                                <div class="group-copy"><span class="bold">Design:</span> {{ design_total }}</div>
+                                <div class="group-copy"><span class="bold">Development:</span> {{ dev_total }}</div>
+                                <div class="group-copy"><span class="bold">Testing & Deployment:</span> {{ platform.deploy }}</div>
+                                <div class="group-copy"><span class="bold">Other Considerations:</span> {{ options_total }}</div>
+                            </div>
+                        </div>
+
+                        <div class="end_group">
+                            <div class="heading_group">
+                                <div class="heading">Platform Total: {{ platform_total }}</div>
+                                <div class="heading">Baseline Rate: ${{ platform_rate }}</div>
+                            </div>
+
+                            <div class="info_group">
+                                <div class="description">We are developing a <span class="bold">{{ type_platform}}</span> platform.  Does this estimate make sense for the work our team has to complete?</div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
             </div>
         </section>
 
@@ -660,19 +657,22 @@
                             </div>
                             
                             <div class="group-copy">
-                                Client Name: {{ form.client_name }}
+                                <span class="bold">Business Name:</span> {{ form.business_name }}
                             </div>
                             <div class="group-copy">
-                                Agency Rate: ${{ form.rate }}
+                                <span class="bold">Agency Rate:</span> ${{ form.rate }}
                             </div>
                             <div class="group-copy">
-                                Established Business: {{ established }}
+                                <span class="bold">Established Business:</span> {{ established }}
                             </div>
                             <div class="group-copy">
-                                Industry: {{ business_industry }}
+                                <span class="bold">Industry:</span> {{ business_industry }}
                             </div>
                             <div class="group-copy">
-                                Business Impact: {{ impact_rate }}
+                                <span class="bold">Business Impact:</span> {{ impact_rate }}
+                            </div>
+                            <div class="group-copy">
+                                <span class="bold">Timeline Impact:</span> {{ timeline_rate }}
                             </div>
                         </div>
                         <div class="info_group">
@@ -712,7 +712,8 @@
                         </div>
                         <div class="info_group">
                             <div class="heading_group">
-                                <div class="heading">Payment Information</div>
+                                <div class="heading">Payment Options</div>
+                                <div class="description">The payment options are listed below.  The options cover the range of low to high rates.</div>
                             </div>
                             
                             <div class="group_small">
@@ -730,6 +731,7 @@
                         <div class="end_group">
                             <div class="heading_group">
                                 <div class="heading">Other Notes:</div>
+                                <div class="description">Miscellaneous information for Account Manager. Suggested profit is based on median estimate.</div>
                             </div>
             
                             <div class="group_small">

@@ -6,6 +6,27 @@
 //         padding: 75px 75px 50px;
 //     }
 // }
+.fixed_header {
+    padding: 15px 50px;
+    font-weight: bold;
+    width: 100%;
+    position: fixed;
+    // top:10px;
+    background: $white;
+
+    @include tablet {
+        padding: 10px 75px;
+    }
+
+    .fixed_header_col {
+        width:40%;
+        text-transform: uppercase;
+
+        &.last {
+            text-align: right;
+        }
+    }
+}
 .custom-proposal-wrapper {
     padding: 35px 50px 50px;
 
@@ -135,6 +156,8 @@ button {
     &.pages {
         @include tablet {
             width: 50%;
+            position: fixed;
+            right: -50px;
         }
     }
 
@@ -242,7 +265,7 @@ input:placeholder-shown {
     font-size: 14px !important;
 
     @include tablet {
-        text-align: center !important;
+        // text-align: center !important;
     }
 }
 select {

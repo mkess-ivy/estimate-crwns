@@ -1,35 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Project Estimate - SVNCRWNS </title>
-
-    <!-- SEO Information -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Montier Kess" />
-
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="style.css" />
-
-    <link rel="stylesheet" href="vendor/frow.min.css" />
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,500&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body>
-    <header>
-        <div class="frow justify-between">
-            <div class="crwns_logo"><img src="logo.png"  class="logo" /></div>
-            <div class="header_small">A SVNCRWNS Business Tool</div>
-        </div>
-        
-    </header>
-
-    <form id="app">
+<template>
+    <div class="custom-proposal-wrapper">
         <section v-if="step == 1">
             <div class="large_heading_group">
                 <div class="large_heading">Project Estimator</div>
@@ -125,7 +95,7 @@
             </div>
             
         </section>
-        
+
         <section v-if="step == 3">
             <div class="large_heading_group">
                 <div class="large_heading">Are we working on a platform?</div>
@@ -845,7 +815,7 @@
                                 <div class="frow justify-start">
                                     <select v-model="payment_option" class="long_select">
                                         <option disabled value="">Select Payment Option</option>
-                                        <option >50% Deposit</option>
+                                        <option>50% Deposit</option>
                                         <option>25% Deposit</option>
                                         <option>First Month's Deposit</option>
                                     </select>
@@ -962,8 +932,20 @@
                             </div>
                             
                             <div class="group_small">
-                                {{ project_deposit }}
+                                <div v-if="payment_option === 'estimate_deposit_half'">
+                                    ${{ estimate_deposit_half }}
+                                </div>
+                                <div v-else-if="payment_option === 'estimate_deposit_quarter'">
+                                    ${{ estimate_deposit_quarter}}
+                                </div>
+                                <div v-else-if="payment_option === 'estimate_deposit_monthly'">
+                                    ${{ estimate_deposit_monthly }}
+                                </div>
+                                <div v-else>
+                                    A payment option was not selected.
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -996,14 +978,14 @@
             </div>
             
         </div>
-    </form>
+    </div>
+</template>
 
-    <script>
-        const App = new Vue({
-
-            el:"#app",
-
-            data: {
+<script>
+    export default {
+        name: 'CustomProposal',
+        data() {
+            return {
                 step: 1,
                 totalsteps: 8,
                 impact_rate: '',
@@ -1021,7 +1003,6 @@
                 payment_option: '',
 
                 form: {
-
                     brand_design: null,
                     research_insights: null,
                     content_strategy: null,
@@ -1086,127 +1067,128 @@
                     project_setup: null,
                     accts_setup: null,
                     product_uploads: null
-
-                }
-                
-            },
-
-            created() {
-                setInterval(this.getNow, 1000);
-            },
-
-            computed: {
-                
-                service_total: function () {
-                    return Number(this.form.brand_design) + Number(this.form.research_insights) + Number(this.form.content_strategy) + Number(this.platform_total) + Number(this.form.campaigns) + Number(this.form.activations) + Number(this.form.consulting) + Number(this.form.brand_foundation) + Number(this.form.brand_mgmt) + Number(this.form.brand_operations) + Number(this.form.brand_transitions);
-
-                    return false;
-                },
-
-                rate_service: function() {
-                    return this.service_total * Number(this.form.rate);                    
-                },
-
-                ultra_value: function() {
-                    return Number(this.impact_rate) + Number(this.timeline_rate) + this.service_total;
-                },
-
-                low_estimate: function() {
-                    return this.ultra_value * Number(this.form.rate) * 0.75;
-                },
-
-                median_estimate: function() {
-                    return this.ultra_value * Number(this.form.rate) * 1;
-                },
-
-                high_estimate: function() {
-                    return this.ultra_value * Number(this.form.rate) * 1.25;
-                },
-                deposit_monthly_low: function() {
-                    return this.low_estimate / 12;
-                },
-                deposit_monthly_high: function() {
-                    return this.high_estimate / 12;
-                },
-                deposit_half_low: function() {
-                    return this.low_estimate * 0.5;
-                },
-                deposit_half_high: function() {
-                    return this.high_estimate * 0.5;
-                },
-                deposit_quarter_low: function() {
-                    return this.low_estimate * 0.25;
-                },
-                deposit_quarter_high: function() {
-                    return this.high_estimate * 0.25;
-                },
-                profit: function() {
-                    return this.median_estimate * 0.65;
-                },
-                platform_total: function() {
-                    return Number(this.platform.home_design) + Number(this.platform.home_dev) + Number(this.platform.about_design) + Number(this.platform.about_dev) + Number(this.platform.shop_allprod_design) + Number(this.platform.shop_allprod_dev) + Number(this.platform.shop_allcoll_design) + Number(this.platform.shop_allcoll_dev) + Number(this.platform.shop_singlecoll_design) + Number(this.platform.shop_singlecoll_dev) + Number(this.platform.product_single_design) + Number(this.platform.product_single_dev) + Number(this.platform.cust_serv_design) + Number(this.platform.cust_serv_dev) + Number(this.platform.policies_design) + Number(this.platform.policies_dev) + Number(this.platform.contact_design) + Number(this.platform.contact_dev) + Number(this.platform.services_design) + Number(this.platform.services_dev) + Number(this.platform.work_design) + Number(this.platform.work_dev) + Number(this.platform.work_single_design) + Number(this.platform.work_single_dev) + Number(this.platform.faqs_design) + Number(this.platform.faqs_dev) + Number(this.platform.cart_design) + Number(this.platform.cart_dev) + Number(this.platform.newsletter_design) + Number(this.platform.newsletter_dev) + Number(this.platform.blog_design) + Number(this.platform.blog_dev) + Number(this.platform.stockist_design) + Number(this.platform.stockist_dev) + Number(this.platform.lookbook_design) + Number(this.platform.lookbook_dev) + Number(this.platform.custom_1_design) + Number(this.platform.custom_1_dev) + Number(this.platform.custom_2_design) + Number(this.platform.custom_2_dev) + Number(this.platform.custom_3_design) + Number(this.platform.custom_3_dev) + Number(this.platform.deploy) + Number(this.platform.meetings) + Number(this.platform.project_setup) + Number(this.platform.accts_setup) + Number(this.platform.product_uploads);
-                },
-                platform_rate: function() {
-                    return this.platform_total * this.form.rate;
-                },
-                design_total: function() {
-                    return Number(this.platform.home_design) + Number(this.platform.about_design) + Number(this.platform.shop_allprod_design) + Number(this.platform.shop_allcoll_design) + Number(this.platform.shop_singlecoll_design) + Number(this.platform.product_single_design) + Number(this.platform.cust_serv_design) + Number(this.platform.policies_design) + Number(this.platform.contact_design) + Number(this.platform.services_design) + Number(this.platform.work_design) + Number(this.platform.work_single_design) + Number(this.platform.faqs_design) + Number(this.platform.cart_design) + Number(this.platform.newsletter_design) + Number(this.platform.blog_design) + Number(this.platform.stockist_design) + Number(this.platform.lookbook_design) + Number(this.platform.custom_1_design) + Number(this.platform.custom_2_design) + Number(this.platform.custom_3_design);
-                },
-                dev_total: function() {
-                    return Number(this.platform.home_dev) + Number(this.platform.about_dev) + Number(this.platform.shop_allcoll_dev) + Number(this.platform.shop_allprod_dev) + Number(this.platform.shop_singlecoll_dev) + Number(this.platform.product_single_dev) + Number(this.platform.cust_serv_dev) + Number(this.platform.policies_dev) + Number(this.platform.contact_dev) + Number(this.platform.services_dev) + Number(this.platform.work_dev) + Number(this.platform.work_single_dev) + Number(this.platform.faqs_dev) + Number(this.platform.cart_dev) + Number(this.platform.newsletter_dev) + Number(this.platform.blog_dev) + Number(this.platform.stockist_dev) + Number(this.platform.lookbook_dev) + Number(this.platform.custom_1_dev) + Number(this.platform.custom_2_dev) + Number(this.platform.custom_3_dev);
-                },
-                options_total: function() {
-                    return Number(this.platform.meetings) + Number(this.platform.project_setup) + Number(this.platform.accts_setup) + Number(this.platform.product_uploads);
-                },
-                estimate_deposit_monthly: function() {
-                    return Number(this.project_estimate) / 12;
-                },
-                estimate_deposit_half: function() {
-                    return Number(this.project_estimate) / 0.5;
-                },
-                estimate_deposit_quarter: function() {
-                    return Number(this.project_estimate) / 0.25;
-                }
-            },
-
-            methods: {
-
-                prevStep: function()
-                {
-                    this.step--;
-                },
-                nextStep: function()
-                {
-                   
-                    this.step++;
-                },
-                sendInquiry: function()
-                {
-                    alert('this has been sent!');
-                },
-                resetForm() {
-                    console.log('Reseting the form')
-                    var self = this; //you need this because *this* will refer to Object.keys below`
-
-                    //Iterate through each object field, key is name of the object field`
-                    Object.keys(this.data.form).forEach(function(key,index) {
-                    self.data.form[key] = '';
-                    });
-                },
-                printWindow: function () {		
-	                window.print();
-                },
-                getNow: function() {
-                    const today = new Date();
-                    const date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
-                    this.timestamp = date;
                 }
 
+            }   
+        },
+        created() {
+            setInterval(this.getNow, 1000);
+        },
+
+        computed: {
+            
+            service_total() {
+                return Number(this.form.brand_design) + Number(this.form.research_insights) + Number(this.form.content_strategy) + Number(this.platform_total) + Number(this.form.campaigns) + Number(this.form.activations) + Number(this.form.consulting) + Number(this.form.brand_foundation) + Number(this.form.brand_mgmt) + Number(this.form.brand_operations) + Number(this.form.brand_transitions);
+
+                // return false;
             },
 
-            mounted(){
+            rate_service() {
+                return this.service_total * Number(this.form.rate);                    
+            },
+
+            ultra_value() {
+                return Number(this.impact_rate) + Number(this.timeline_rate) + this.service_total;
+            },
+
+            low_estimate() {
+                return this.ultra_value * Number(this.form.rate) * 0.75;
+            },
+
+            median_estimate() {
+                return this.ultra_value * Number(this.form.rate) * 1;
+            },
+
+            high_estimate() {
+                return this.ultra_value * Number(this.form.rate) * 1.25;
+            },
+            deposit_monthly_low() {
+                return this.low_estimate / 12;
+            },
+            deposit_monthly_high() {
+                return this.high_estimate / 12;
+            },
+            deposit_half_low() {
+                return this.low_estimate * 0.5;
+            },
+            deposit_half_high() {
+                return this.high_estimate * 0.5;
+            },
+            deposit_quarter_low() {
+                return this.low_estimate * 0.25;
+            },
+            deposit_quarter_high() {
+                return this.high_estimate * 0.25;
+            },
+            profit() {
+                return this.median_estimate * 0.65;
+            },
+            platform_total() {
+                return Number(this.platform.home_design) + Number(this.platform.home_dev) + Number(this.platform.about_design) + Number(this.platform.about_dev) + Number(this.platform.shop_allprod_design) + Number(this.platform.shop_allprod_dev) + Number(this.platform.shop_allcoll_design) + Number(this.platform.shop_allcoll_dev) + Number(this.platform.shop_singlecoll_design) + Number(this.platform.shop_singlecoll_dev) + Number(this.platform.product_single_design) + Number(this.platform.product_single_dev) + Number(this.platform.cust_serv_design) + Number(this.platform.cust_serv_dev) + Number(this.platform.policies_design) + Number(this.platform.policies_dev) + Number(this.platform.contact_design) + Number(this.platform.contact_dev) + Number(this.platform.services_design) + Number(this.platform.services_dev) + Number(this.platform.work_design) + Number(this.platform.work_dev) + Number(this.platform.work_single_design) + Number(this.platform.work_single_dev) + Number(this.platform.faqs_design) + Number(this.platform.faqs_dev) + Number(this.platform.cart_design) + Number(this.platform.cart_dev) + Number(this.platform.newsletter_design) + Number(this.platform.newsletter_dev) + Number(this.platform.blog_design) + Number(this.platform.blog_dev) + Number(this.platform.stockist_design) + Number(this.platform.stockist_dev) + Number(this.platform.lookbook_design) + Number(this.platform.lookbook_dev) + Number(this.platform.custom_1_design) + Number(this.platform.custom_1_dev) + Number(this.platform.custom_2_design) + Number(this.platform.custom_2_dev) + Number(this.platform.custom_3_design) + Number(this.platform.custom_3_dev) + Number(this.platform.deploy) + Number(this.platform.meetings) + Number(this.platform.project_setup) + Number(this.platform.accts_setup) + Number(this.platform.product_uploads);
+            },
+            platform_rate() {
+                return this.platform_total * this.form.rate;
+            },
+            design_total() {
+                return Number(this.platform.home_design) + Number(this.platform.about_design) + Number(this.platform.shop_allprod_design) + Number(this.platform.shop_allcoll_design) + Number(this.platform.shop_singlecoll_design) + Number(this.platform.product_single_design) + Number(this.platform.cust_serv_design) + Number(this.platform.policies_design) + Number(this.platform.contact_design) + Number(this.platform.services_design) + Number(this.platform.work_design) + Number(this.platform.work_single_design) + Number(this.platform.faqs_design) + Number(this.platform.cart_design) + Number(this.platform.newsletter_design) + Number(this.platform.blog_design) + Number(this.platform.stockist_design) + Number(this.platform.lookbook_design) + Number(this.platform.custom_1_design) + Number(this.platform.custom_2_design) + Number(this.platform.custom_3_design);
+            },
+            dev_total() {
+                return Number(this.platform.home_dev) + Number(this.platform.about_dev) + Number(this.platform.shop_allcoll_dev) + Number(this.platform.shop_allprod_dev) + Number(this.platform.shop_singlecoll_dev) + Number(this.platform.product_single_dev) + Number(this.platform.cust_serv_dev) + Number(this.platform.policies_dev) + Number(this.platform.contact_dev) + Number(this.platform.services_dev) + Number(this.platform.work_dev) + Number(this.platform.work_single_dev) + Number(this.platform.faqs_dev) + Number(this.platform.cart_dev) + Number(this.platform.newsletter_dev) + Number(this.platform.blog_dev) + Number(this.platform.stockist_dev) + Number(this.platform.lookbook_dev) + Number(this.platform.custom_1_dev) + Number(this.platform.custom_2_dev) + Number(this.platform.custom_3_dev);
+            },
+            options_total() {
+                return Number(this.platform.meetings) + Number(this.platform.project_setup) + Number(this.platform.accts_setup) + Number(this.platform.product_uploads);
+            },
+            estimate_deposit_monthly() {
+                return Number(this.project_estimate) / 12;
+            },
+            estimate_deposit_half() {
+                return Number(this.project_estimate) * 0.5;
+            },
+            estimate_deposit_quarter() {
+                return Number(this.project_estimate) * 0.25;
             }
-        });
-    </script>
-</body>
-</html>
+        },
+
+        methods: {
+
+            prevStep: function()
+            {
+                this.step--;
+            },
+            nextStep: function()
+            {
+                
+                this.step++;
+            },
+            sendInquiry: function()
+            {
+                alert('this has been sent!');
+            },
+            resetForm() {
+                console.log('Reseting the form')
+                var self = this; //you need this because *this* will refer to Object.keys below`
+
+                //Iterate through each object field, key is name of the object field`
+                Object.keys(this.data.form).forEach(function(key) {
+                self.data.form[key] = '';
+                });
+            },
+            printWindow: function () {		
+                window.print();
+            },
+            getNow: function() {
+                const today = new Date();
+                const date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+                this.timestamp = date;
+            }
+
+        },
+        mounted(){}
+    }
+</script>
+
+<style lang="scss">
+@import "../scss/_variables.scss";
+@import "../scss/_layout.scss";
+@import "../scss/_components.scss";
+</style>

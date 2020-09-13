@@ -16,6 +16,7 @@
             <div class="info_wrapper">
                 <div class="frow justify-between">
                     <div class="info_single">
+                        
                         <div class="info_group">
                             <div class="heading_group">
                                 <div class="heading">Client Information</div>
@@ -59,6 +60,22 @@
                         </div>
                     </div>
                     <div class="info_single">
+                        <div class="info_group">
+                            <div class="heading_group">
+                                <div class="heading">Account Manager</div>
+                                <div class="description">Who will be working with the client into the onboarding process.</div>
+                            </div>
+                            
+                            <div class="group">
+                                <div class="frow justify-start">
+                                    <select v-model="account_manager" class="long_select">
+                                        <option disabled value="">Select Account Manager</option>
+                                        <option>Montier Kess</option>
+                                        <option>Chavon Henderson</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="info_group">
                             <div class="heading_group">
                                 <div class="heading">Business Industry</div>
@@ -582,8 +599,8 @@
                         </div>
 
                         <div class="end_group">
-                            <div class="heading">Total Value: {{ service_total }}</div>
-                            <div class="heading">Baseline Rate: ${{ rate_service }}</div>
+                            <div class="heading bold ">Total Value: <div class="big_number">{{ service_total }}</div></div>
+                            <div class="heading bold">Baseline Rate: <div class=" big_number">${{ rate_service }}</div></div>
                         </div>
                     </div>
                 </div>
@@ -728,7 +745,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="end_group">
+                        <div class="info_group">
                             <div class="heading_group">
                                 <div class="heading">Other Notes:</div>
                                 <div class="description">Miscellaneous information for Account Manager. Suggested profit is based on median estimate.</div>
@@ -739,6 +756,26 @@
                                 <div class="group_copy_small">Ultra Value: {{ ultra_value }}</div>
                                 <div class="group_copy_small">Suggested Profit Margin: 65%</div>
                                 <div class="group_copy_small">Suggested Profit: ${{ profit }}</div>
+                            </div>
+                        </div>
+                        <div class="end_group">
+                            <div class="heading_group">
+                                <div class="heading">Project Estimate</div>
+                            </div>
+                            
+                            <div class="group">
+                                <div class="frow justify-start">
+                                    <label class="project_estimate_label">Our Estimate</label>
+                                    <input 
+                                    v-model="project_estimate"
+                                    type="number" placeholder="20" class="form-control form-control-lg">
+                                </div>
+                                <div class="frow justify-start">
+                                    <label class="project_estimate_label">Projected Timeline</label>
+                                    <input 
+                                    v-model="project_timeline"
+                                    type="text" placeholder="2 weeks" class="form-control form-control-lg">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -785,26 +822,7 @@
                             </div>
                         </div>
 
-                        <div class="info_group">
-                            <div class="heading_group">
-                                <div class="heading">Project Estimate</div>
-                            </div>
-                            
-                            <div class="group">
-                                <div class="frow justify-start">
-                                    <label class="project_estimate_label">Our Estimate</label>
-                                    <input 
-                                    v-model="project_estimate"
-                                    type="number" placeholder="20" class="form-control form-control-lg">
-                                </div>
-                                <div class="frow justify-start">
-                                    <label class="project_estimate_label">Projected Timeline</label>
-                                    <input 
-                                    v-model="project_timeline"
-                                    type="text" placeholder="2 weeks" class="form-control form-control-lg">
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="info_single">
                         <div class="info_group">
@@ -824,22 +842,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="info_group">
-                            <div class="heading_group">
-                                <div class="heading">Account Manager</div>
-                                <div class="description">Who will be working with the client into the onboarding process.</div>
-                            </div>
-                            
-                            <div class="group">
-                                <div class="frow justify-start">
-                                    <select v-model="account_manager" class="long_select">
-                                        <option disabled value="">Select Account Manager</option>
-                                        <option>Montier Kess</option>
-                                        <option>Chavon Henderson</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                        
                         
                     </div>
                 </div>
@@ -1193,4 +1196,282 @@
 @import "../scss/_variables.scss";
 @import "../scss/_layout.scss";
 @import "../scss/_components.scss";
+
+.custom-proposal-wrapper {
+    padding: 35px 50px 50px;
+
+    @include tablet {
+        padding: 75px 75px 50px;
+    }
+}
+.button_wrapper {
+    position: fixed;
+    bottom: 0px;
+    width: 85%;
+    background: $black;
+    padding: 20px 0 30px;
+    border-top: 1px solid $black;
+
+    @include  tablet {
+        bottom: 0px;
+    }
+}
+button {
+    background: $white !important;
+    text-transform: uppercase !important;
+    border-radius: 16px !important;
+    font-size: 14px !important;
+    padding: 8px 20px !important;
+    outline: none !important;
+    border: none !important;
+    margin-right: 15px !important;
+    color: $black;
+    font-weight: bold;
+    &:visited, &:active {
+        color: black !important;
+    }
+    &:hover {
+        background: $yellow !important;
+        color: $black;
+    }
+}
+.next_button {
+    color: $black;
+}
+.reset_button {
+    background: red !important;
+    border: 1px solid red;
+}
+.print_button {
+    background: green !important;
+    border: 1px solid green;
+}
+
+.info_single {
+
+    width: 100%;
+    padding-bottom: 50px;
+
+    &.pages {
+        @include tablet {
+            width: 50%;
+            position: fixed;
+            right: -50px;
+        }
+    }
+
+    @include tablet {
+        padding-bottom: 0;
+        width: 45%;
+        padding-right: 30px;
+    }
+
+    
+    .form_select {
+        margin-top: 20px;
+        color: $white;
+        width: 200px !important;
+    }
+}
+.info_group {
+    padding-bottom: 50px;
+}
+.service_group {
+    padding-bottom: 20px;
+
+    @include tablet {
+        width: 65%;
+        padding-bottom: 10px;
+    }
+
+    label {
+        width: 65%;
+        color: white;
+        font-size: 16px;
+        margin-bottom: 0;
+        
+        @include tablet {
+            margin-bottom: 10px;
+        }
+    }
+}
+.end_group {
+    padding: 20px 0;
+    border-top: 1px solid black;
+    margin-top: 75px;
+
+    @include tablet {
+        margin-top: 30px;
+        width: 75%;
+    }
+
+    .heading {
+        padding-bottom: 5px;
+    }
+}
+.radio_group {
+    padding-top: 25px;
+    color: $white;
+
+    label {
+        width: 50%;
+        
+    }
+}
+.page_group {
+    padding-bottom: 10px;
+}
+
+// Form Details
+label {
+    // color: $white !important;
+    font-size: 16px !important;
+
+    &.platform_control_label {
+        width: 300px;
+        color: $white;
+    }
+    &.project_estimate_label {
+        width: 35%;
+        color: $white;
+        
+    }
+}
+
+.platform-control {
+    width: 75px !important;
+    margin-right: 20px !important;
+}
+.form-control {
+    color: $white;
+    width: 100%;
+    outline: none;
+    background: transparent;
+    font-size: 16px !important;
+
+
+    @include tablet {
+        width: 30%;
+    }
+}
+.form-control-lg {
+    font-size: 16px !important;
+    color: $white;
+}
+input {
+    color: $white;
+}
+input:placeholder-shown {
+    color: $placeholder !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid black !important;
+    border-radius: 0 !important;
+    
+    font-size: 14px !important;
+
+    @include tablet {
+        // text-align: center !important;
+    }
+}
+select {
+    width: 100% !important;
+    color: white;
+
+    @include tablet {
+        width: 30% !important;
+    }
+}
+.long_select {
+    width: 65% !important;
+    color: $white;
+}
+.platform_select {
+    width: 50%;
+}
+textarea {
+    border-color: $white;
+    width: 90%;
+    color: $white;
+}
+.info_wrapper {
+    padding: 15px 0;
+
+    @include tablet {
+        padding: 50px 0;
+    }
+}
+
+// Components
+.large_heading_group {
+    .large_heading {
+        font-weight: $w_bold;
+        font-size: 20px;
+        text-transform: uppercase;
+
+        @include tablet {
+            font-size: 24px;
+        }
+    }
+    .large_description {
+        width: 100%;
+        padding: 10px 0 30px;
+
+        @include tablet {
+            width: 45%;
+        }
+    }
+}
+.heading_group {
+
+    padding-bottom: 20px;
+    .heading {
+        text-transform: uppercase;
+        font-weight: $w-bold;
+        font-size: 20px;
+        padding-bottom: 5px;
+
+        
+    }
+    
+    .description {
+        font-size: 14px;
+    }
+}
+.big_number {
+    font-size:32px;
+    padding-bottom:20px;
+    font-weight: light;
+}
+
+.group_small {
+    padding-top: 15px;
+}
+.group_copy_small {
+    
+    font-size: 14px;
+}
+.group {
+    padding-bottom: 50px;
+
+    .group-copy {
+        width: 100%;
+        padding-right: 15px;
+
+        &.longer {
+            @include tablet {
+                width: 65%;
+                padding-bottom: 10px;
+            }
+        }
+        @include tablet {
+            width: 58%;
+
+            
+        }
+    }
+}
+.textbox {
+    padding-top: 10px;
+}
 </style>
